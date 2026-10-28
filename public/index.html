@@ -164,9 +164,15 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 .win::after{content:"";position:absolute;top:22px;right:24px;width:12px;height:12px;border-radius:50%;background:var(--lime)}
 
 /* case studies */
-.workhead{padding:clamp(22px,3vw,36px)}
-.workhead h2{font-size:clamp(1.8rem,3.4vw,2.9rem)}
-.workhead p{color:var(--muted);margin-top:8px;font-size:1.1rem}
+.workwrap{background:#4326d9;color:#fff;border-radius:var(--r-card);padding:clamp(12px,2.2vw,28px);position:relative;overflow:hidden}
+.workwrap::before{content:"";position:absolute;right:-8%;top:-30%;width:55%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(195,232,59,.28),transparent 65%);pointer-events:none}
+.workhead{position:relative;padding:clamp(18px,3vw,40px) clamp(10px,2vw,28px) clamp(22px,3vw,40px)}
+.kick{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:var(--lime);color:var(--lime-ink);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+.workhead h2{font-weight:700;font-size:clamp(2.6rem,7.4vw,6rem);line-height:.98;letter-spacing:-.045em;margin-top:20px;max-width:12em}
+.workhead h2 em{font-style:normal;color:var(--lime)}
+.workhead p{color:rgba(255,255,255,.88);margin-top:18px;font-size:clamp(1.1rem,1.8vw,1.4rem);max-width:30em}
+.workwrap .cases{position:relative}
+.workwrap .card{color:var(--ink)}
 .cases{display:grid;gap:clamp(10px,1.4vw,16px)}
 .case{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);align-items:center}
 .case:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
@@ -177,6 +183,13 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 .fbar i{width:9px;height:9px;border-radius:50%;background:var(--soft2)}
 .fbar i:nth-child(1){background:#ff6b5e}.fbar i:nth-child(2){background:#ffbd3d}.fbar i:nth-child(3){background:#2ec86b}
 .frame img{display:block;width:100%;height:auto}
+.vp{position:relative;overflow:hidden;background:#fff}
+.vp:not(.zoom){aspect-ratio:16/10}
+.vp img.pan{will-change:transform;transform:translate3d(0,var(--ty,0px),0)}
+.vp:not(.zoom) img.pan{position:absolute;left:0;top:0}
+.vp.zoom img.pan{transform:scale(var(--z,1));transform-origin:50% var(--zo,0%)}
+.vp .sb{position:absolute;right:5px;top:5px;bottom:5px;width:5px;border-radius:9px;background:rgba(0,0,0,.08)}
+.vp .sb::after{content:"";position:absolute;left:0;right:0;height:22%;top:calc(var(--sp,0) * 78%);border-radius:9px;background:rgba(0,0,0,.4)}
 @media (hover:hover){.case:hover .frame{transform:translateY(-6px)}}
 .case-no{font-weight:600;font-size:.82rem;letter-spacing:.16em;color:var(--muted)}
 .case-body h3{font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.1;margin-top:6px}
@@ -329,6 +342,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   .facts{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
+  .pcs>div{grid-template-columns:minmax(0,1fr);gap:2px}
   .wall{grid-template-columns:repeat(2,minmax(0,1fr))}
   .marq .tile{--px:12px;--py:10px;height:80px}
   .cform .row2{grid-template-columns:1fr}
@@ -412,35 +426,35 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   </div>
 </section>
 
-<section id="work">
-  <div class="card workhead"><h2>Case studies</h2><p>Selected projects I developed, from the first idea to <span class="rot"><span class="rot-w on">launch</span><span class="rot-w" aria-hidden="true">go-live</span><span class="rot-w" aria-hidden="true">scale</span><span class="rot-w" aria-hidden="true">handover</span></span>.</p></div>
-  <div class="cases" style="margin-top:clamp(10px,1.4vw,16px)"><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/alkazemi.webp" srcset="assets/work/alkazemi-640.webp 640w, assets/work/alkazemi.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="615" loading="lazy" decoding="async" alt="Screenshot of the Asset operations platform for a property group project"></div></figure>
+<section class="workwrap" id="work">
+  <div class="workhead"><span class="kick">Built by me</span><h2>Platforms I designed and <em>built myself</em></h2><p>My own products, live in the real world. Every one went from the first idea to <span class="rot"><span class="rot-w on">launch</span><span class="rot-w" aria-hidden="true">go-live</span><span class="rot-w" aria-hidden="true">scale</span><span class="rot-w" aria-hidden="true">handover</span></span>.</p></div>
+  <div class="cases"><article class="card case">
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/alkazemi.webp" srcset="assets/work/alkazemi-640.webp 640w, assets/work/alkazemi.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="615" loading="lazy" decoding="async" alt="Screenshot of the Asset operations platform for a property group project"></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 01</div><h3>Asset operations platform for a property group</h3><div class="tags"><span class="ind">Real estate and property management</span><span>Platform</span><span>Arabic and English</span><span>Role-based access</span></div>
         <p class="idea">One operations system for a property group's buildings, units, vehicles and stock.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>Operations managers, building supervisors, technicians, procurement and security guards each sign in to their own view of maintenance tickets, approvals, rent collection, vacant-unit inspections, fleet and warehouse.</dd></div><div><dt>Problem</dt><dd>Maintenance requests, approvals and rent follow-ups lived in chats and spreadsheets, so late jobs went unnoticed and nobody had one picture of 41 buildings and 471 units.</dd></div><div><dt>Solution</dt><dd>A live dashboard that shows jobs waiting for approval, late jobs, fixed-on-time rate, occupancy and rent collected. Every request gets a ticket, an owner and a deadline.</dd></div></dl>
       </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/copx.webp" srcset="assets/work/copx-640.webp 640w, assets/work/copx.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Corporate websites as a service project"></div></figure>
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/copx-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Corporate websites as a service project"><span class="sb" aria-hidden="true"></span></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 02</div><h3>Corporate websites as a service</h3><div class="tags"><span class="ind">Banking and listed companies</span><span>SaaS</span><span>Bilingual</span><span>Investor relations</span></div>
         <p class="idea">A ready-to-launch corporate website for Kuwait's banks and listed companies, hosted and supported as a subscription.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>A listed company picks a template and goes live with investor relations, disclosures, governance pages and an Arabic and English version of every page.</dd></div><div><dt>Problem</dt><dd>Banks and listed companies must publish disclosures and investor content in two languages, and a custom corporate website can take months to design, build and secure.</dd></div><div><dt>Solution</dt><dd>21 ready templates built around the pages investors and regulators look for, with disclosures built in. Hosting, security and support come from KUWAITNET, so a site can go live in a week.</dd></div></dl>
       </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/sijil.webp" srcset="assets/work/sijil-640.webp 640w, assets/work/sijil.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="573" loading="lazy" decoding="async" alt="Screenshot of the Company intelligence for the Gulf project"></div></figure>
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/sijil.webp" srcset="assets/work/sijil-640.webp 640w, assets/work/sijil.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="573" loading="lazy" decoding="async" alt="Screenshot of the Company intelligence for the Gulf project"></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 03</div><h3>Company intelligence for the Gulf</h3><div class="tags"><span class="ind">Data and information services</span><span>Data product</span><span>Portal, API and bulk data</span><span>AI connector</span></div>
         <p class="idea">Verified legal-entity data for companies in Kuwait, Saudi Arabia, the UAE, Qatar, Bahrain and Oman, from official sources.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>Banks, insurers, procurement and compliance teams verify a company, screen suppliers, investigate owners and clean CRM records before they sign, onboard or pay.</dd></div><div><dt>Problem</dt><dd>Gulf registries are mostly Arabic-only and slow, each country uses different identifiers, and data resellers rarely say where a field came from or how fresh it is.</dd></div><div><dt>Solution</dt><dd>One search across six registries. Every record names its source and date, is re-checked daily and is marked verified only when two sources agree. Delivered through a portal, a two-way API, bulk files and an AI assistant connector.</dd></div></dl>
       </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/zeta.webp" srcset="assets/work/zeta-640.webp 640w, assets/work/zeta.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="608" loading="lazy" decoding="async" alt="Screenshot of the Sales portal for account managers and presales project"></div></figure>
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/zeta.webp" srcset="assets/work/zeta-640.webp 640w, assets/work/zeta.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="608" loading="lazy" decoding="async" alt="Screenshot of the Sales portal for account managers and presales project"></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 04</div><h3>Sales portal for account managers and presales</h3><div class="tags"><span class="ind">IT services and B2B sales</span><span>Internal platform</span><span>Company sign-in</span><span>Live reporting</span></div>
         <p class="idea">One pipeline for every deal, every department and every presales request.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>Account managers log deals and follow-ups, presales teams receive proposal tickets, and management watches wins on a live office screen.</dd></div><div><dt>Problem</dt><dd>Deals, follow-ups and proposal requests were spread across emails, chats and separate trackers, so ownership was unclear and managers had no shared view of the pipeline.</dd></div><div><dt>Solution</dt><dd>A single portal with company-only sign-in and admin approval for new users. Pipelines, follow-ups and presales tickets sit together, and closed wins appear live on the office screen.</dd></div></dl>
       </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/italian.webp" srcset="assets/work/italian-640.webp 640w, assets/work/italian.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Online flower and gift store for Kuwait project"></div></figure>
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/italian-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Online flower and gift store for Kuwait project"><span class="sb" aria-hidden="true"></span></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 05</div><h3>Online flower and gift store for Kuwait</h3><div class="tags"><span class="ind">Retail and e-commerce</span><span>Online store</span><span>Arabic and English</span><span>WhatsApp ordering</span></div>
         <p class="idea">A bilingual online store for bouquets, cakes, balloons and gifts, organised around the way people shop for occasions.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>Customers choose by occasion, such as birthdays, anniversaries, graduation and Eid. They order for themselves or for a company, and can subscribe to regular deliveries.</dd></div><div><dt>Problem</dt><dd>Flower buyers shop in a hurry, on their phones and often in Arabic. A generic store makes them hunt through categories and costs sales at peak dates.</dd></div><div><dt>Solution</dt><dd>Occasion-led navigation, instant search, a first-order offer, corporate and subscription pages and a WhatsApp button on every screen, all in English and Arabic.</dd></div></dl>
       </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/arc.webp" srcset="assets/work/arc-640.webp 640w, assets/work/arc.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Motion catalogue for an abaya and handbag brand project"></div></figure>
+      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/arc-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Motion catalogue for an abaya and handbag brand project"><span class="sb" aria-hidden="true"></span></div></div></figure>
       <div class="case-body"><div class="case-no">CASE 06</div><h3>Motion catalogue for an abaya and handbag brand</h3><div class="tags"><span class="ind">Fashion and retail</span><span>Catalogue</span><span>Mobile first</span><span>WhatsApp ordering</span></div>
         <p class="idea">A catalogue where every piece can be turned, explored and ordered in a few taps.</p>
         <dl class="pcs"><div><dt>Use case</dt><dd>Shoppers browse 195 pieces in 8 collections, spin each design to see how it falls, and message the brand on WhatsApp to order or request a custom border or shade.</dd></div><div><dt>Problem</dt><dd>A flat product grid does not show how an abaya drapes and moves, and most of the brand's sales happen in conversation, not at a checkout.</dd></div><div><dt>Solution</dt><dd>A fast, mobile-first catalogue with drag-to-spin views, collection filters and WhatsApp and Instagram one tap away, so a customer goes from browsing to ordering in one chat.</dd></div></dl>
@@ -527,12 +541,19 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
   var prog=d.querySelector('.progress'), portrait=d.querySelector('.portrait'), hero=d.querySelector('.hero');
-  var par=d.querySelectorAll('[data-par]'), ticking=false;
+  var par=d.querySelectorAll('[data-par]'), pans=d.querySelectorAll('[data-pan]'), ticking=false;
   function frame(){
     ticking=false;
     var y=window.pageYOffset||0, max=Math.max(1,root.scrollHeight-window.innerHeight);
     prog.style.setProperty('--p',Math.min(1,y/max).toFixed(4));
     if(!reduce&&portrait&&y<hero.offsetHeight+200){portrait.style.setProperty('--py',(y*0.05).toFixed(1)+'px');}
+    if(!reduce)pans.forEach(function(vp){
+      var r=vp.getBoundingClientRect(); if(r.bottom<-50||r.top>window.innerHeight+50)return;
+      var p=Math.max(0,Math.min(1,(window.innerHeight-r.top)/(window.innerHeight+r.height))), img=vp.firstElementChild;
+      if(vp.classList.contains('zoom')){ vp.style.setProperty('--z',(1+p*0.12).toFixed(4)); vp.style.setProperty('--zo',(p*100).toFixed(1)+'%'); return; }
+      var over=Math.max(0,img.offsetHeight-vp.clientHeight);
+      vp.style.setProperty('--ty',(-p*over).toFixed(1)+'px'); vp.style.setProperty('--sp',p.toFixed(3));
+    });
     if(!reduce)par.forEach(function(el){
       var r=el.parentNode.getBoundingClientRect(); if(r.bottom<0||r.top>window.innerHeight)return;
       el.style.setProperty('--pp',((r.top+r.height/2-window.innerHeight/2)*parseFloat(el.dataset.par)).toFixed(1)+'px');
