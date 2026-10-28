@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Najmuddin Mustafa Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wdth,wght@75..100,500..800&family=Newsreader:wght@400;600&display=swap">
+<style>body{margin:0}
+/* Layout: ink hero with the client logos scrolling beneath the name, then quiet reading sections on a cool mist ground. */
+:root{
+  --bg:#EDF0F2;            /* mist */
+  --surface:#FFFFFF;       /* paper */
+  --fg:#0F1C2E;            /* ink */
+  --muted:#4A5A6E;         /* slate */
+  --line:#D3DAE1;          /* hairline */
+  --accent:#0B6B77;        /* gulf teal */
+  --hero-bg:#0F1C2E;
+  --hero-fg:#EDF0F2;
+  --hero-muted:#A9B8C8;
+  --hero-accent:#6FD0DB;
+  --font-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Newsreader",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A121D;--surface:#111D2C;--fg:#E6ECF2;--muted:#9DAEC0;--line:#223348;--accent:#6FD0DB;
+    --hero-bg:#060C14;--hero-fg:#EDF0F2;--hero-muted:#A9B8C8;--hero-accent:#6FD0DB;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A121D;--surface:#111D2C;--fg:#E6ECF2;--muted:#9DAEC0;--line:#223348;--accent:#6FD0DB;
+  --hero-bg:#060C14;--hero-fg:#EDF0F2;--hero-muted:#A9B8C8;--hero-accent:#6FD0DB;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{color:var(--accent);text-underline-offset:.2em}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* progress line and sticky menu */
+.progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;z-index:60;background:var(--hero-accent);transform-origin:left;transform:scaleX(var(--p,0));pointer-events:none}
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--hero-bg);color:var(--hero-fg);padding-top:env(safe-area-inset-top,0px);transform:translateY(-110%);transition:transform .35s cubic-bezier(.2,.7,.2,1);box-shadow:0 1px 0 #22344a}
+.bar.show{transform:none}
+.bar-in{display:flex;align-items:center;gap:8px 28px;justify-content:space-between}
+.bar-name{font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--hero-fg);text-decoration:none;white-space:nowrap;padding:14px 0}
+.bar nav{display:flex;gap:0 6px;overflow-x:auto;scrollbar-width:none;font-family:var(--font-display);font-weight:500;font-size:.95rem}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{color:var(--hero-muted);text-decoration:none;padding:14px 12px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.bar nav a:hover{color:var(--hero-fg)}
+.bar nav a[aria-current="true"]{color:var(--hero-fg);border-bottom-color:var(--hero-accent)}
+section,.clients-band{scroll-margin-top:56px}
+
+/* hero */
+.hero{background:var(--hero-bg);color:var(--hero-fg);padding-top:20px;overflow:hidden}
+.hero a{color:var(--hero-fg)}
+.nav{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:flex-end;font-family:var(--font-display);font-size:.95rem;font-weight:500}
+.nav a{text-decoration:none;color:var(--hero-muted);padding:6px 0}
+.nav a:hover{color:var(--hero-fg)}
+.hero-main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);grid-template-areas:"name photo" "intro photo";column-gap:clamp(16px,4vw,56px);align-items:start;margin-top:clamp(20px,4vw,40px)}
+.hero h1{grid-area:name;font-weight:800;font-stretch:75%;font-variation-settings:"wdth" 75;font-size:clamp(3.1rem,9.2vw,8.2rem);line-height:.92;letter-spacing:-.025em;margin:clamp(8px,3vw,40px) 0 0}
+.hero h1 span{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.hero h1 i{display:block;font-style:normal}
+.intro{grid-area:intro;margin-top:clamp(24px,3.5vw,40px);padding-bottom:clamp(8px,2vw,24px)}
+.portrait{grid-area:photo;position:relative;margin:0;align-self:end;justify-self:end;width:100%;max-width:480px;padding:6px 14px 26px 0;translate:0 var(--py,0px)}
+.portrait img{display:block;width:100%;height:auto}
+.portrait .glow{position:absolute;z-index:0;inset:-8% -16%;width:132%;max-width:none;height:116%;object-fit:cover;filter:blur(40px) saturate(1.15);opacity:.5;-webkit-mask-image:radial-gradient(closest-side,#000 35%,transparent 100%);mask-image:radial-gradient(closest-side,#000 35%,transparent 100%)}
+.arch{position:relative;z-index:1}
+.arch-line{position:absolute;inset:0;border:1.5px solid var(--hero-accent);border-radius:50% 50% 18px 18px / 34% 34% 18px 18px;transform:translate(14px,14px);opacity:.85}
+.arch-photo{position:relative;border-radius:50% 50% 18px 18px / 34% 34% 18px 18px;overflow:hidden;background:#2c2a2f;aspect-ratio:4/5;box-shadow:0 30px 60px rgba(0,0,0,.5);transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.portrait .arch-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 10%}
+.chip{position:absolute;z-index:2;display:grid;gap:2px;padding:10px 14px;border-radius:12px;background:rgba(10,20,34,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);font-family:var(--font-display);color:#EDF0F2;box-shadow:0 14px 30px rgba(0,0,0,.4);animation:bob 6s ease-in-out infinite}
+.chip b{font-size:.98rem;font-weight:700;line-height:1.2}
+.chip span{font-size:.8rem;color:#A9B8C8;line-height:1.3}
+.chip.c1{left:-7%;bottom:15%}
+.chip.c2{right:-3%;top:24%;animation-delay:-2s}
+.chip.c3{right:7%;bottom:0;animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.role{font-family:var(--font-display);font-weight:700;font-size:clamp(.95rem,1.6vw,1.15rem);line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-accent)}
+.role span{display:block}
+.lede{margin-top:14px;font-size:clamp(1.15rem,1.8vw,1.35rem);max-width:34em;color:var(--hero-fg)}
+.reach{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:32px;font-family:var(--font-display);font-size:.95rem;line-height:1.5;color:var(--hero-muted)}
+.reach b{display:block;font-weight:600;color:var(--hero-fg);font-size:1.05rem;overflow-wrap:anywhere}
+.reach a{text-decoration:none}
+.reach p{margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;font-family:var(--font-display);font-weight:600;font-size:1rem;text-decoration:none;padding:12px 20px;border-radius:6px;border:1.5px solid var(--hero-accent)}
+.hero .btn.solid{background:var(--hero-accent);color:#06222A}
+.hero .btn.ghost{color:var(--hero-fg)}
+.btn:hover{filter:brightness(1.1)}
+.marquee{margin-top:clamp(36px,6vw,72px);padding-bottom:clamp(20px,3vw,32px);display:grid;gap:12px}
+.row{overflow:hidden}
+.track{display:flex;gap:12px;width:max-content;animation:slide 70s linear infinite}
+.row.rev .track{animation-direction:reverse;animation-duration:80s}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}
+.tile{--px:9%;--py:7%;position:relative;background:#fff;border-radius:6px;overflow:hidden;flex:none}
+.tile img{position:absolute;left:var(--px);top:var(--py);width:calc(100% - 2*var(--px));height:calc(100% - 2*var(--py));display:block;object-fit:contain;mix-blend-mode:multiply}
+.marquee .tile{--px:16px;--py:12px;height:104px;aspect-ratio:3/2}
+.tile.dark{--px:0px;--py:0px}
+.tile.dark img{object-fit:cover;mix-blend-mode:normal}
+.tile.outing{background:#2a1836}
+.tile.msi{background:#062037}
+/* one entrance sequence for the hero */
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes settle{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.hero h1 i{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2) i{animation-delay:.1s}
+.portrait{animation:settle 1s cubic-bezier(.2,.7,.2,1) .15s both}
+.intro>*{animation:fadeup .7s cubic-bezier(.2,.7,.2,1) both}
+.intro>:nth-child(1){animation-delay:.35s}.intro>:nth-child(2){animation-delay:.45s}.intro>:nth-child(3){animation-delay:.55s}.intro>:nth-child(4){animation-delay:.65s}
+.marquee{animation:fadeup .8s ease .6s both}
+.portrait{will-change:transform}
+
+/* swipe-down reveal for headings */
+.js [data-swipe]{clip-path:inset(0 0 62% 0);transform:translateY(-.3em);transition:clip-path .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.js [data-swipe].is-in{clip-path:inset(-8% -3% -30% -3%);transform:none}
+
+/* rolling numbers */
+.rc{position:relative;display:inline-block;height:1.08em;overflow:hidden;vertical-align:top}
+.rw{display:block;visibility:hidden;line-height:1.08}
+.rs{position:absolute;left:0;top:0;display:flex;flex-direction:column;transform:translateY(0)}
+.rs b{display:block;height:1.08em;line-height:1.08;font-weight:inherit}
+.rt{display:inline-block;white-space:pre;height:1.08em;line-height:1.08;vertical-align:top}
+.rolling .rs{transform:translateY(calc(-1.08em * var(--n)));transition:transform 1.6s cubic-bezier(.16,.84,.24,1) calc(var(--i) * .14s)}
+
+/* scroll reveals: content stays readable at rest and sharpens as it arrives */
+.js [data-reveal]{opacity:.2;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.js [data-reveal].is-in{opacity:1;transform:none}
+@media (hover:hover){
+  .wall .tile{transition:transform .25s ease,box-shadow .25s ease}
+  .js .wall .tile[data-reveal].is-in{transition:transform .25s ease,box-shadow .25s ease,opacity .7s ease}
+  .wall .tile:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(15,28,46,.18)}
+  .btn{transition:transform .2s ease,filter .2s ease}
+  .btn:hover{transform:translateY(-2px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .track{animation:none;width:auto;flex-wrap:wrap}
+  .track .tile[aria-hidden="true"]{display:none}
+  .hero h1 i,.portrait,.intro>*,.marquee,.chip{animation:none}
+  .arch-photo,.full{transition:none}
+  .js [data-swipe]{clip-path:none;transform:none;transition:none}
+  .js [data-reveal]{opacity:1;transform:none;transition:none}
+  .js .wipe{clip-path:none;transition:none}
+  .js .wipe img{transform:none;transition:none}
+  .full-frame{translate:none}
+  .bar{transition:none}
+  .progress{display:none}
+}
+
+/* sections */
+main{overflow-x:clip}
+section{padding-top:clamp(56px,9vw,112px)}
+section:last-of-type{padding-bottom:clamp(28px,4vw,48px)}
+h2{font-weight:700;font-variation-settings:"wdth" 88;font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.05;letter-spacing:-.015em;max-width:16em}
+.head{display:grid;gap:14px;margin-bottom:clamp(28px,4vw,48px)}
+.head p{color:var(--muted);max-width:36em}
+
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px clamp(32px,6vw,80px);align-items:center}
+.about-body{display:grid;gap:40px}
+.full{position:relative;margin:0 18px 18px 0;max-width:440px;width:calc(100% - 18px);justify-self:start}
+.full-frame{position:absolute;inset:0;border:2px solid var(--accent);border-radius:8px;transform:translate(18px,18px);translate:0 var(--pp,0px)}
+.full-photo{position:relative;border-radius:8px;overflow:hidden;background:#e5e6ea;box-shadow:0 22px 44px rgba(15,28,46,.22)}
+.full-photo img{display:block;width:100%;height:auto}
+.plate{position:absolute;right:-12px;bottom:36px;display:grid;gap:1px;padding:12px 18px 12px 16px;border-radius:10px;border-left:3px solid var(--accent);background:var(--surface);color:var(--fg);font-family:var(--font-display);box-shadow:0 16px 34px rgba(15,28,46,.28)}
+.plate b{font-size:1.02rem;font-weight:700}
+.plate span{font-size:.85rem;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.full{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(32px,5vw,56px);border-top:1.5px solid var(--fg)}
+.stat{padding:18px 24px 0 0}
+.stat-num{font-family:var(--font-display);font-weight:800;font-variation-settings:"wdth" 80;font-size:clamp(2.4rem,5.4vw,4.2rem);line-height:1.08;color:var(--accent);letter-spacing:-.02em}
+.stat-label{font-family:var(--font-display);font-size:.95rem;color:var(--muted);margin-top:4px;max-width:14em;line-height:1.35}
+.js .wipe{clip-path:inset(0 40% 0 0);transition:clip-path 1.1s cubic-bezier(.2,.7,.2,1)}
+.js .wipe.is-in{clip-path:inset(0 0 0 0)}
+.js .wipe img{transform:scale(1.1);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .wipe.is-in img{transform:none}
+.js [data-reveal][data-side]{transform:translateX(40px)}
+.js [data-reveal][data-side].is-in{transform:none}
+.about .copy p+p{margin-top:1.1em}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;align-content:start;font-family:var(--font-display)}
+.facts div{border-top:1.5px solid var(--fg);padding-top:10px}
+.facts dt{font-size:.9rem;color:var(--muted);font-weight:500}
+.facts dd{margin:2px 0 0;font-weight:600;font-size:1.05rem}
+
+.wins li{display:grid;grid-template-columns:minmax(150px,280px) minmax(0,1fr);gap:8px 40px;padding:26px 0;border-top:1px solid var(--line);align-items:baseline}
+.wins li:last-child{border-bottom:1px solid var(--line)}
+.fig{font-family:var(--font-display);font-weight:800;font-variation-settings:"wdth" 80;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;color:var(--accent);letter-spacing:-.02em}
+.wins h3{font-size:1.3rem;font-weight:650;line-height:1.25}
+.wins p{color:var(--muted);margin-top:6px;max-width:38em}
+
+.roles{display:grid;gap:0}
+.role-item{display:grid;grid-template-columns:minmax(150px,280px) minmax(0,1fr);gap:12px 40px;padding:32px 0;border-top:1px solid var(--line)}
+.role-item:last-child{border-bottom:1px solid var(--line)}
+.when{font-family:var(--font-display);font-weight:700;font-size:1.15rem}
+.where{font-family:var(--font-display);font-size:.95rem;color:var(--muted);margin-top:2px}
+.role-item h3{font-size:1.5rem;font-weight:700;line-height:1.2}
+.at{font-family:var(--font-display);font-weight:500;color:var(--muted);margin-top:2px}
+.step{font-family:var(--font-display);font-size:.95rem;color:var(--accent);font-weight:600;margin-top:8px}
+.role-item ul{margin-top:16px;display:grid;gap:10px}
+.role-item li{padding-left:1.1em;position:relative;max-width:40em}
+.role-item li::before{content:"";position:absolute;left:0;top:.78em;width:.5em;height:2px;background:var(--accent)}
+
+.clients-band{background:var(--surface);margin-top:clamp(56px,9vw,112px);padding-top:clamp(48px,8vw,96px);padding-bottom:clamp(48px,8vw,96px)}
+.clients-band section{padding:0}
+.wall{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.wall .tile{width:100%;justify-self:stretch;aspect-ratio:3/2;border:1px solid var(--line)}
+
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.skills div{border-top:1px solid var(--line);padding:18px 0 20px}
+.skills dt{font-family:var(--font-display);font-weight:650;font-size:1.05rem}
+.skills dd{margin:4px 0 0;color:var(--muted)}
+.skills div:last-child:nth-child(odd){grid-column:1/-1}
+
+.edu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 56px}
+.edu article{border-top:1.5px solid var(--fg);padding-top:14px}
+.edu h3{font-size:1.3rem;font-weight:700;line-height:1.2}
+.edu .meta{font-family:var(--font-display);color:var(--muted);font-size:.95rem;margin-top:4px}
+.edu p.d{margin-top:10px;max-width:30em}
+
+.contact{background:var(--hero-bg);color:var(--hero-fg);margin-top:clamp(16px,3vw,32px);padding-top:clamp(36px,5vw,56px);padding-bottom:max(16px,calc(env(safe-area-inset-bottom,0px) + 12px))}
+.contact h2{color:var(--hero-fg)}
+.mail{display:block;font-family:var(--font-display);font-weight:800;font-variation-settings:"wdth" 80;font-size:clamp(1.5rem,5.6vw,4.2rem);line-height:1.05;letter-spacing:-.02em;margin-top:16px;overflow-wrap:anywhere;color:var(--hero-accent);text-decoration:none}
+.links{display:flex;flex-wrap:wrap;gap:10px 36px;margin-top:18px;font-family:var(--font-display);font-size:1.05rem}
+.links a{color:var(--hero-fg)}
+.links span{color:var(--hero-muted)}
+.cform{margin-top:clamp(24px,3vw,36px);display:grid;gap:12px;max-width:640px}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cform input,.cform textarea{width:100%;font:inherit;font-family:var(--font-display);font-size:1rem;color:var(--hero-fg);background:rgba(255,255,255,.06);border:1px solid #2b4058;border-radius:10px;padding:13px 14px}
+.cform textarea{min-height:120px;resize:vertical}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--hero-accent);outline-offset:1px}
+.cform button{justify-self:start;font-family:var(--font-display);font-weight:700;font-size:1rem;padding:13px 26px;border:0;border-radius:999px;background:var(--hero-accent);color:#06121f;cursor:pointer}
+.cform button[disabled]{opacity:.6;cursor:wait}
+.cform .hp{position:absolute;left:-9999px;opacity:0}
+.cform .msg{min-height:1.4em;color:var(--hero-muted);font-family:var(--font-display);font-size:.95rem}
+@media(max-width:560px){.cform .row{grid-template-columns:1fr}}
+.foot{margin-top:clamp(24px,3vw,32px);padding-top:14px;border-top:1px solid #22344a;font-family:var(--font-display);font-size:.9rem;color:var(--hero-muted)}
+
+@media (max-width:900px){
+  .wall{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hero-main{grid-template-columns:minmax(0,1fr);grid-template-areas:"name" "photo" "intro"}
+  .portrait{justify-self:center;max-width:340px;margin-top:4px}
+  .hero h1{font-size:clamp(3rem,16.5vw,5.2rem)}
+  .nav{flex-wrap:nowrap;overflow-x:auto;gap:0 22px;scrollbar-width:none;white-space:nowrap}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{padding:12px 0}
+  .cta .btn{flex:1 1 100%}
+  .links{gap:6px 28px}
+  .links a,.links span{padding:8px 0}
+  .about,.skills,.edu{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .full{justify-self:center;max-width:360px}
+  .wins li,.role-item{grid-template-columns:minmax(0,1fr)}
+  .wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nav{justify-content:flex-start}
+  .bar-name{display:none}
+  .bar-in{justify-content:flex-start}
+  .marquee .tile{--px:12px;--py:10px;height:86px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat{padding-bottom:12px}
+  .portrait{padding-right:12px}
+  .chip.c1{left:2%;bottom:14%}
+  .chip.c2{right:2%;top:22%}
+  .chip.c3{display:none}
+  .plate{right:0;bottom:30px}
+}
+</style></head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<div class="progress" aria-hidden="true"></div>
+<div class="bar" id="bar">
+  <div class="in bar-in">
+    <a class="bar-name" href="#top">Najmuddin Mustafa</a>
+    <nav aria-label="Jump to section">
+      <a href="#about" data-s="about">About</a><a href="#wins" data-s="wins">Results</a><a href="#experience" data-s="experience">Experience</a><a href="#clients" data-s="clients">Clients</a><a href="#skills" data-s="skills">Skills</a><a href="#contact" data-s="contact">Contact</a>
+    </nav>
+  </div>
+</div>
+<header class="hero" id="top">
+  <div class="in">
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a><a href="#wins">Results</a><a href="#experience">Experience</a><a href="#clients">Clients</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="hero-main">
+      <h1><span><i>Najmuddin</i></span><span><i>Mustafa</i></span></h1>
+      <figure class="portrait">
+        <img class="glow" src="assets/najmuddin-glow.webp" alt="" aria-hidden="true" width="120" height="150">
+        <div class="arch">
+          <span class="arch-line" aria-hidden="true"></span>
+          <div class="arch-photo"><img class="photo" src="assets/najmuddin-960.webp" srcset="assets/najmuddin-640.webp 640w, assets/najmuddin-960.webp 960w" sizes="(max-width:760px) 340px, 480px" width="960" height="1201" alt="Najmuddin Mustafa in a dark suit and patterned tie" fetchpriority="high" decoding="async"></div>
+        </div>
+        <div class="chip c1" aria-hidden="true"><b>Senior Account Manager</b><span>KUWAITNET, Kuwait City</span></div>
+        <div class="chip c2" aria-hidden="true"><b>7+ years</b><span>in IT solutions</span></div>
+        <div class="chip c3" aria-hidden="true"><b>20+ enterprise clients</b><span>banks, government, SaaS</span></div>
+      </figure>
+      <div class="intro">
+        <p class="role"><span>Senior account manager</span><span>Project development division</span></p>
+        <p class="lede">I take software projects from the first requirements call to launch, and I work as part of the client's own team. 7+ years across digital transformation, SaaS and enterprise cloud.</p>
+        <div class="cta">
+          <a class="btn solid" href="#clients">See my clients</a>
+          <a class="btn ghost" href="#experience">Read my experience</a>
+        </div>
+        <div class="reach">
+          <p>Email<b><a href="mailto:najmuddinmustafa007@gmail.com">najmuddinmustafa007@gmail.com</a></b></p>
+          <p>Phone<b><a href="tel:+96566906494">+965 66906494</a></b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee" aria-label="Clients I have worked with">
+    <div class="row"><ul class="track"><li class="tile"><img src="assets/logos/nbk.webp" alt="National Bank of Kuwait" width="320" height="159" decoding="async"></li><li class="tile"><img src="assets/logos/gulf-bank.webp" alt="Gulf Bank" width="320" height="81" decoding="async"></li><li class="tile"><img src="assets/logos/abk.webp" alt="Ahli Bank of Kuwait" width="320" height="166" decoding="async"></li><li class="tile"><img src="assets/logos/ibk.webp" alt="Industrial Bank of Kuwait" width="320" height="444" decoding="async"></li><li class="tile"><img src="assets/logos/gig-kuwait.webp" alt="Gulf Insurance Group Kuwait" width="320" height="229" decoding="async"></li><li class="tile"><img src="assets/logos/amar.webp" alt="Amar Finance &amp; Leasing" width="320" height="191" decoding="async"></li><li class="tile"><img src="assets/logos/union-of-investment-companies.webp" alt="Union of Investment Companies" width="348" height="233" decoding="async"></li><li class="tile"><img src="assets/logos/equate.webp" alt="Equate" width="320" height="270" decoding="async"></li><li class="tile"><img src="assets/logos/kisr.webp" alt="Kuwait Institute for Scientific Research" width="320" height="142" decoding="async"></li><li class="tile"><img src="assets/logos/state-bureau-financial-control.webp" alt="State Bureau for Financial Control" width="320" height="302" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/nbk.webp" alt="" width="320" height="159" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/gulf-bank.webp" alt="" width="320" height="81" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/abk.webp" alt="" width="320" height="166" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/ibk.webp" alt="" width="320" height="444" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/gig-kuwait.webp" alt="" width="320" height="229" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/amar.webp" alt="" width="320" height="191" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/union-of-investment-companies.webp" alt="" width="348" height="233" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/equate.webp" alt="" width="320" height="270" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/kisr.webp" alt="" width="320" height="142" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/state-bureau-financial-control.webp" alt="" width="320" height="302" loading="lazy" decoding="async"></li></ul></div><div class="row rev"><ul class="track"><li class="tile"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="Sabah Al Ahmad Center for Giftedness and Creativity" width="320" height="208" decoding="async"></li><li class="tile"><img src="assets/logos/kuwait-reggio-center.webp" alt="Kuwait Reggio Center" width="320" height="384" decoding="async"></li><li class="tile dark msi"><img src="assets/logos/medical-sciences-institute.webp" alt="Medical Sciences Institute" width="480" height="321" decoding="async"></li><li class="tile"><img src="assets/logos/al-hamra-hotel.webp" alt="Al-Hamra Hotel" width="320" height="124" decoding="async"></li><li class="tile"><img src="assets/logos/oxygen.webp" alt="Oxygen, The Muscle Factory" width="320" height="118" decoding="async"></li><li class="tile"><img src="assets/logos/bareedi.webp" alt="Bareedi" width="320" height="131" decoding="async"></li><li class="tile"><img src="assets/logos/dawi.webp" alt="DAWI" width="320" height="126" decoding="async"></li><li class="tile"><img src="assets/logos/qetae.webp" alt="QETAE" width="320" height="87" decoding="async"></li><li class="tile"><img src="assets/logos/nagwa.webp" alt="Nagwa" width="320" height="96" decoding="async"></li><li class="tile dark outing"><img src="assets/logos/outing.webp" alt="Outing" width="480" height="321" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="" width="320" height="208" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/kuwait-reggio-center.webp" alt="" width="320" height="384" loading="lazy" decoding="async"></li><li class="tile dark msi" aria-hidden="true"><img src="assets/logos/medical-sciences-institute.webp" alt="" width="480" height="321" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/al-hamra-hotel.webp" alt="" width="320" height="124" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/oxygen.webp" alt="" width="320" height="118" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/bareedi.webp" alt="" width="320" height="131" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/dawi.webp" alt="" width="320" height="126" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/qetae.webp" alt="" width="320" height="87" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/nagwa.webp" alt="" width="320" height="96" loading="lazy" decoding="async"></li><li class="tile dark outing" aria-hidden="true"><img src="assets/logos/outing.webp" alt="" width="480" height="321" loading="lazy" decoding="async"></li></ul></div>
+  </div>
+</header>
+
+<main>
+<div class="in">
+
+<div class="stats" aria-label="Numbers at a glance">
+  <div class="stat"><div class="stat-num">7+</div><div class="stat-label">years in IT solutions</div></div>
+  <div class="stat"><div class="stat-num">20+</div><div class="stat-label">enterprise clients in my portfolio</div></div>
+  <div class="stat"><div class="stat-num">25%</div><div class="stat-label">higher client retention</div></div>
+  <div class="stat"><div class="stat-num">15%</div><div class="stat-label">above quarterly sales targets</div></div>
+</div>
+
+<section id="about">
+  <div class="about">
+    <figure class="full">
+      <span class="full-frame" data-par="-0.06" aria-hidden="true"></span>
+      <div class="full-photo wipe">
+        <img src="assets/najmuddin-seated-880.webp" srcset="assets/najmuddin-seated-560.webp 560w, assets/najmuddin-seated-880.webp 880w" sizes="(max-width:760px) 360px, 440px" width="880" height="1320" alt="Najmuddin Mustafa seated on a black chair in a navy suit and red tie, smiling" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="plate"><b>Najmuddin Mustafa</b><span>Senior Account Manager, KUWAITNET</span></figcaption>
+    </figure>
+    <div class="about-body">
+      <div class="copy">
+        <h2>A Sr. account manager who understands the build as well as the sale</h2>
+        <p style="margin-top:28px">I manage client portfolios, write SOWs, and stay with the project through delivery and after-sales support. I have hands-on Python and Django experience and I vibe code, so I can sit in a technical review with developers and infrastructure engineers as comfortably as in a contract negotiation.</p>
+        <p>My clients span banks, insurers, government bodies, education, logistics, fintech, fitness, hospitality and entertainment. In each of them I aim to be part of the client's team, not an outside vendor.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Based in</dt><dd>Kuwait City</dd></div>
+        <div><dt>Current role</dt><dd>Senior Account Manager, Project Development, KUWAITNET</dd></div>
+        <div><dt>Languages</dt><dd>English (fluent). Arabic, Gujarati and Hindi (basic)</dd></div>
+        <div><dt>Education</dt><dd>BBA in Computer Application, MIT, 2020</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="wins">
+  <div class="head"><h2>Results I can point to</h2></div>
+  <ul class="wins">
+    <li><div class="fig">30%</div><div><h3>Revenue growth for the development department</h3><p>The highest growth in more than five years, from account management and new business development.</p></div></li>
+    <li><div class="fig">6 months</div><div><h3>From competitor's client to phase 1 live</h3><p>Won the Pay Later app contract from a competitor without lowering the price, then delivered the first phase in under six months.</p></div></li>
+    <li><div class="fig">$1M+</div><div><h3>Enterprise agreements worth over $1M a year</h3><p>Negotiated one- and two-year contracts, including maintenance and ODP packages, with enterprise clients.</p></div></li>
+    <li><div class="fig">From scratch</div><div><h3>Rebuilt a family business after a fire</h3><p>Relaunched an abaya clothing business, brought it back to peak performance and grew its wholesale trade into Iraq and the UAE.</p></div></li>
+  </ul>
+</section>
+
+<section id="experience">
+  <div class="head"><h2>Experience</h2></div>
+  <div class="roles">
+    <article class="role-item">
+      <div><div class="when">2021 to present</div><div class="where">Kuwait</div></div>
+      <div>
+        <h3>Senior Account Manager, Project Development Department</h3>
+        <div class="at">KUWAITNET General Trading &amp; Contracting Co.</div>
+        <p class="step">Senior Account Manager from September 2026. Account Manager from 2021 to August 2026.</p>
+        <ul>
+          <li>Built a portfolio of 20+ enterprise clients and beat quarterly sales targets by 15%.</li>
+          <li>Raised client retention by 25% through post-sales support and technical advice.</li>
+          <li>Pitched products, services and combined packages, lifting successful contract negotiations on complex IT projects by 30%.</li>
+          <li>Negotiated sales terms, maintenance and ODP packages and long-term contracts.</li>
+          <li>Advise clients across KUWAITNET's services: Red Hat, AWS cloud, managed infrastructure, domains and VPS, and cybersecurity.</li>
+          <li>Work with design, development and infrastructure teams so web and mobile projects meet scope, budget and timeline.</li>
+        </ul>
+      </div>
+    </article>
+    <article class="role-item">
+      <div><div class="when">2020 to 2021</div><div class="where">Kuwait</div></div>
+      <div>
+        <h3>POS, Business &amp; IT Solutions Executive</h3>
+        <div class="at">H-Tech Solutions</div>
+        <ul>
+          <li>Beat sales goals by 30% through client engagement, needs assessment and negotiation.</li>
+          <li>Ran the full POS client cycle: cold calls, requirements, proposal, contract, system setup, delivery and 3 to 4 days of on-site training.</li>
+          <li>Led corporate website and e-commerce projects from contract to design, development, QA and launch on the client's chosen hosting.</li>
+          <li>Built custom solutions on WordPress, NopCommerce and Shopify, and handled installation and troubleshooting.</li>
+        </ul>
+      </div>
+    </article>
+    <article class="role-item">
+      <div><div class="when">2018 to 2019</div><div class="where">Pune, India</div></div>
+      <div>
+        <h3>Mobile Application, Solution Architect</h3>
+        <div class="at">Zara Pvt. Ltd</div>
+        <ul>
+          <li>Managed the company's mobile application, including in-product messaging and promotional campaigns.</li>
+          <li>Contributed to a 15% improvement in customer satisfaction by promoting product trials, store credit options and exchange policies.</li>
+          <li>Handled daily inventory updates and new product arrivals.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+</div>
+
+<div class="clients-band" id="clients">
+  <div class="in">
+    <section>
+      <div class="head">
+        <h2>Clients I have worked with</h2>
+        <p>Banks, insurers, government bodies, schools, hotels and consumer brands.</p>
+      </div>
+      <ul class="wall"><li class="tile"><img src="assets/logos/nbk.webp" alt="National Bank of Kuwait" width="320" height="159" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/gulf-bank.webp" alt="Gulf Bank" width="320" height="81" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/abk.webp" alt="Ahli Bank of Kuwait" width="320" height="166" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/ibk.webp" alt="Industrial Bank of Kuwait" width="320" height="444" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/gig-kuwait.webp" alt="Gulf Insurance Group Kuwait" width="320" height="229" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/amar.webp" alt="Amar Finance &amp; Leasing" width="320" height="191" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/union-of-investment-companies.webp" alt="Union of Investment Companies" width="348" height="233" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/equate.webp" alt="Equate" width="320" height="270" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/kisr.webp" alt="Kuwait Institute for Scientific Research" width="320" height="142" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/state-bureau-financial-control.webp" alt="State Bureau for Financial Control" width="320" height="302" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="Sabah Al Ahmad Center for Giftedness and Creativity" width="320" height="208" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/kuwait-reggio-center.webp" alt="Kuwait Reggio Center" width="320" height="384" loading="lazy" decoding="async"></li><li class="tile dark msi"><img src="assets/logos/medical-sciences-institute.webp" alt="Medical Sciences Institute" width="480" height="321" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/al-hamra-hotel.webp" alt="Al-Hamra Hotel" width="320" height="124" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/oxygen.webp" alt="Oxygen, The Muscle Factory" width="320" height="118" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/bareedi.webp" alt="Bareedi" width="320" height="131" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/dawi.webp" alt="DAWI" width="320" height="126" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/qetae.webp" alt="QETAE" width="320" height="87" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/nagwa.webp" alt="Nagwa" width="320" height="96" loading="lazy" decoding="async"></li><li class="tile dark outing"><img src="assets/logos/outing.webp" alt="Outing" width="480" height="321" loading="lazy" decoding="async"></li></ul>
+    </section>
+  </div>
+</div>
+
+<div class="in">
+<section id="skills">
+  <div class="head"><h2>Skills and tools</h2></div>
+  <dl class="skills">
+    <div><dt>Sales and clients</dt><dd>Account management, client relationships, negotiation, business development, strategic planning, RFP responses, presentations and pitching, competitive intelligence.</dd></div>
+    <div><dt>Leadership</dt><dd>Team leadership, project management, cross-functional collaboration, problem solving, time management.</dd></div>
+    <div><dt>Development</dt><dd>Python, Django, Flutter, native development, HTML, CSS, PHP.</dd></div>
+    <div><dt>AI tools, hands-on</dt><dd>Claude (Fable and Opus 5.5), Claude Design and development tools, Codex, ChatGPT, and MCP tools such as Supabase, Netlify and Vercel.</dd></div>
+    <div><dt>SaaS and automation</dt><dd>Salesforce, Pipedrive, WHMCS, Redmine, n8n, KNWorkflow Automation, business process automation.</dd></div>
+    <div><dt>Cloud and delivery</dt><dd>AWS, Google Cloud, VPS hosting.</dd></div>
+    <div><dt>Websites and e-commerce</dt><dd>Expert in Shopify, NopCommerce, Wix and Framer.</dd></div>
+  </dl>
+</section>
+
+<section id="education">
+  <div class="head"><h2>Education</h2></div>
+  <div class="edu">
+    <article>
+      <h3>Bachelor of Business Administration, Computer Application</h3>
+      <div class="meta">MIT, 2016 to 2020</div>
+      <p class="d">President of the student council. Winner of the Aroohan Fashion Show.</p>
+    </article>
+    <article>
+      <h3>High School Diploma</h3>
+      <div class="meta">Indian Community School Kuwait (ICSK), graduated 2016</div>
+      <p class="d">Student council member. Played cricket, football and volleyball, and chess.</p>
+    </article>
+  </div>
+</section>
+</div>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="in">
+    <h2>Let's talk about your next project</h2>
+    <a class="mail" href="mailto:najmuddinmustafa007@gmail.com">najmuddinmustafa007@gmail.com</a>
+    <form class="cform" id="cform" novalidate>
+      <div class="row"><input name="name" placeholder="Your name" autocomplete="name" required maxlength="120" aria-label="Your name"><input name="email" type="email" placeholder="Email" autocomplete="email" required maxlength="200" aria-label="Email"></div>
+      <input name="company" placeholder="Company (optional)" autocomplete="organization" maxlength="160" aria-label="Company">
+      <textarea name="message" placeholder="Tell me about your project" required maxlength="3000" aria-label="Message"></textarea>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit">Send via WhatsApp</button>
+      <div class="msg" role="status" aria-live="polite"></div>
+    </form>
+    <div class="links">
+      <span>+965 66906494</span>
+      <a href="https://www.linkedin.com/in/najmuddin-mustafa-0460ba2ba/">LinkedIn</a>
+      <a href="https://www.instagram.com/nmg.in/">Instagram</a>
+    </div>
+    <div class="foot">Najmuddin Mustafa, Kuwait City</div>
+  </div>
+</footer>
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var bar=d.getElementById('bar'), prog=d.querySelector('.progress'), portrait=d.querySelector('.portrait'), hero=d.querySelector('.hero');
+  var par=d.querySelectorAll('[data-par]');
+  var ticking=false;
+  function frame(){
+    ticking=false;
+    var y=window.pageYOffset||0, max=Math.max(1,root.scrollHeight-window.innerHeight);
+    prog.style.setProperty('--p',Math.min(1,y/max).toFixed(4));
+    bar.classList.toggle('show',y>Math.max(260,hero.offsetHeight*0.25));
+    if(!reduce&&portrait&&y<hero.offsetHeight){portrait.style.setProperty('--py',(y*0.07).toFixed(1)+'px');}
+    if(!reduce)par.forEach(function(el){
+      var r=el.parentNode.getBoundingClientRect(); if(r.bottom<0||r.top>window.innerHeight)return;
+      el.style.setProperty('--pp',((r.top+r.height/2-window.innerHeight/2)*parseFloat(el.dataset.par)).toFixed(1)+'px');
+    });
+  }
+  function onScroll(){ if(!ticking){ticking=true;requestAnimationFrame(frame);} }
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',onScroll,{passive:true});
+  frame();
+
+  /* gentle 3D tilt on the two portraits (mouse only) */
+  function tilt(el,max){
+    if(reduce||!fine||!el)return;
+    el.addEventListener('pointermove',function(e){
+      var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      el.style.setProperty('--ry',(x*max).toFixed(2)+'deg');
+      el.style.setProperty('--rx',(-y*max*.7).toFixed(2)+'deg');
+    });
+    el.addEventListener('pointerleave',function(){el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');});
+  }
+  tilt(d.querySelector('.arch-photo'),9);
+  tilt(d.querySelector('.full'),7);
+
+  /* rolling numbers: each digit is a reel that spins to its value while the number is on screen */
+  function build(el){
+    var txt=el.textContent.trim();
+    if(!/\d/.test(txt))return false;
+    el.setAttribute('aria-label',txt);
+    el.textContent='';
+    var i=0;
+    txt.split('').forEach(function(ch){
+      if(/\d/.test(ch)){
+        var rc=d.createElement('span'); rc.className='rc'; rc.setAttribute('aria-hidden','true');
+        rc.style.setProperty('--n',parseInt(ch,10)+10); rc.style.setProperty('--i',i++);
+        var w=d.createElement('span'); w.className='rw'; w.textContent=ch; rc.appendChild(w);
+        var st=d.createElement('span'); st.className='rs';
+        for(var k=0;k<20;k++){var b=d.createElement('b'); b.textContent=k%10; st.appendChild(b);}
+        rc.appendChild(st); el.appendChild(rc);
+      } else {
+        var t=d.createElement('span'); t.className='rt'; t.setAttribute('aria-hidden','true'); t.textContent=ch; el.appendChild(t);
+      }
+    });
+    return true;
+  }
+  var rollEls=Array.prototype.slice.call(d.querySelectorAll('.fig,.stat-num'));
+  if(!reduce){
+    rollEls.forEach(function(el){ if(!build(el)) el.setAttribute('data-swipe',''); });
+    if('IntersectionObserver' in window){
+      var ro=new IntersectionObserver(function(es){
+        es.forEach(function(e){ e.target.classList.toggle('rolling',e.isIntersecting); });
+      },{threshold:0.6});
+      rollEls.forEach(function(el){ if(!el.hasAttribute('data-swipe')) ro.observe(el); });
+    } else {
+      rollEls.forEach(function(el){ el.classList.add('rolling'); });
+    }
+  }
+
+  /* reveal on scroll */
+  d.querySelectorAll('main h2, .contact h2').forEach(function(el){el.setAttribute('data-swipe','');});
+  var groups=[['.head p',60],['.about .copy p',90],['.facts div',70],['.wins li',0],['.role-item',0],['.wall .tile',45],['.skills div',60],['.edu article',90],['.contact .mail',70],['.contact .links',140],['.stat',90]];
+  var targets=[];
+  groups.forEach(function(g){
+    d.querySelectorAll(g[0]).forEach(function(el,i){
+      el.setAttribute('data-reveal','');
+      el.style.setProperty('--d',((i%6)*g[1])+'ms');
+      targets.push(el);
+    });
+  });
+  d.querySelectorAll('.about .copy p, .facts div').forEach(function(el){el.setAttribute('data-side','');});
+  d.querySelectorAll('.wipe,[data-swipe]').forEach(function(el){targets.push(el);});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+    targets.forEach(function(el){io.observe(el);});
+  } else {
+    targets.forEach(function(el){el.classList.add('is-in');});
+  }
+
+  /* highlight the section in view */
+  var links={};
+  d.querySelectorAll('.bar nav a').forEach(function(a){links[a.dataset.s]=a;});
+  var alias={education:'skills'};
+  function setCurrent(id){
+    id=alias[id]||id;
+    Object.keys(links).forEach(function(k){
+      if(k===id){
+        links[k].setAttribute('aria-current','true');
+        var nav=links[k].parentNode, left=links[k].offsetLeft-nav.clientWidth/2+links[k].clientWidth/2;
+        if(nav.scrollWidth>nav.clientWidth)nav.scrollTo({left:left,behavior:reduce?'auto':'smooth'});
+      } else links[k].removeAttribute('aria-current');
+    });
+  }
+  if('IntersectionObserver' in window){
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setCurrent(e.target.id);});
+    },{rootMargin:'-45% 0px -50% 0px'});
+    ['about','wins','experience','clients','skills','education','contact'].forEach(function(id){var el=d.getElementById(id); if(el)spy.observe(el);});
+  }
+})();
+
+(function(){
+  var f=document.getElementById('cform'); if(!f) return;
+  var msg=f.querySelector('.msg'), btn=f.querySelector('button');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(f);
+    if(d.get('website')) return;
+    var company=(d.get('company')||'').trim(), name=(d.get('name')||'').trim(), email=(d.get('email')||'').trim(), text=(d.get('message')||'').trim();
+    if(!name||!/^\S+@\S+\.\S+$/.test(email)||!text){msg.textContent='Please add your name, a valid email and a message.';return;}
+    btn.disabled=true; msg.textContent='Sending...';
+    fetch('https://bnlzfrrvyocnplexpfqy.supabase.co/rest/v1/contact_messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':'sb_publishable_7qdIMV9U1iwltNRvSw5wtQ_G9GZbVat','Prefer':'return=minimal'},
+      body:JSON.stringify({name:name,email:email,company:(d.get('company')||'').trim()||null,message:text})
+    }).then(function(r){
+      if(!r.ok) throw new Error(r.status);
+      msg.textContent='Saved. Opening WhatsApp...';
+    }).catch(function(){
+      msg.textContent='Opening WhatsApp...';
+    }).then(function(){
+      var t='Hello Najmuddin, I am '+name+(company?' from '+company:'')+'.\n\n'+text+'\n\nEmail: '+email;
+      f.reset(); btn.disabled=false;
+      window.location.href='https://wa.me/96566906494?text='+encodeURIComponent(t);
+    });
+  });
+})();
+</script>
+</body></html>
