@@ -235,6 +235,34 @@ h2{font-weight:700;font-variation-settings:"wdth" 88;font-size:clamp(2rem,4.6vw,
 .cform .hp{position:absolute;left:-9999px;opacity:0}
 .cform .msg{min-height:1.4em;color:var(--hero-muted);font-family:var(--font-display);font-size:.95rem}
 @media(max-width:560px){.cform .row{grid-template-columns:1fr}}
+
+.cases{display:grid;gap:clamp(48px,7vw,96px)}
+.case{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.case:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.12fr)}
+.case:nth-child(even) .shot{order:2}
+.shot{margin:0;position:relative}
+.frame{border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 24px 50px -22px rgba(15,28,46,.4);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.frame .bar{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--bg)}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.frame .bar i:nth-child(1){background:#ff6b5e}.frame .bar i:nth-child(2){background:#ffbd3d}.frame .bar i:nth-child(3){background:#2ec86b}
+.frame img{display:block;width:100%;height:auto}
+@media (hover:hover){.case:hover .frame{transform:translateY(-6px);box-shadow:0 34px 60px -22px rgba(15,28,46,.5)}}
+.case-no{font-family:var(--font-display);font-weight:700;font-size:.85rem;letter-spacing:.14em;color:var(--accent)}
+.case-body h3{font-size:clamp(1.55rem,2.8vw,2.2rem);font-weight:700;line-height:1.1;margin-top:6px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags span{font-family:var(--font-display);font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.tags span.ind{border-color:var(--accent);color:var(--accent)}
+.idea{margin-top:16px;font-size:1.12rem;line-height:1.55;max-width:34em}
+.pcs{margin:20px 0 0;display:grid;gap:0}
+.pcs div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.pcs div:last-child{border-bottom:1px solid var(--line)}
+.pcs dt{font-family:var(--font-display);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-top:.25em}
+.pcs dd{margin:0;font-size:1rem;line-height:1.5;color:var(--fg)}
+@media (max-width:860px){
+  .case,.case:nth-child(even){grid-template-columns:minmax(0,1fr)}
+  .case:nth-child(even) .shot{order:0}
+  .pcs div{grid-template-columns:78px minmax(0,1fr);gap:10px}
+}
 .foot{margin-top:clamp(24px,3vw,32px);padding-top:14px;border-top:1px solid #22344a;font-family:var(--font-display);font-size:.9rem;color:var(--hero-muted)}
 
 @media (max-width:900px){
@@ -289,7 +317,7 @@ h2{font-weight:700;font-variation-settings:"wdth" 88;font-size:clamp(2rem,4.6vw,
 <header class="hero" id="top">
   <div class="in">
     <nav class="nav" aria-label="Sections">
-      <a href="#about">About</a><a href="#wins">Results</a><a href="#experience">Experience</a><a href="#clients">Clients</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#wins">Results</a><a href="#work">Projects</a><a href="#experience">Experience</a><a href="#clients">Clients</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
     </nav>
     <div class="hero-main">
       <h1><span><i>Najmuddin</i></span><span><i>Mustafa</i></span></h1>
@@ -365,6 +393,41 @@ h2{font-weight:700;font-variation-settings:"wdth" 88;font-size:clamp(2rem,4.6vw,
     <li><div class="fig">$1M+</div><div><h3>Enterprise agreements worth over $1M a year</h3><p>Negotiated one- and two-year contracts, including maintenance and ODP packages, with enterprise clients.</p></div></li>
     <li><div class="fig">From scratch</div><div><h3>Rebuilt a family business after a fire</h3><p>Relaunched an abaya clothing business, brought it back to peak performance and grew its wholesale trade into Iraq and the UAE.</p></div></li>
   </ul>
+</section>
+
+<section id="work">
+  <div class="head"><h2>Case studies</h2><p>Selected projects I developed, from the first idea to launch.</p></div>
+  <div class="cases"><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/alkazemi.webp" srcset="assets/work/alkazemi-640.webp 640w, assets/work/alkazemi.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="615" loading="lazy" decoding="async" alt="Screenshot of the Asset operations platform for a property group project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 01</div><h3>Asset operations platform for a property group</h3><div class="tags"><span class="ind">Real estate and property management</span><span>Platform</span><span>Arabic and English</span><span>Role-based access</span></div>
+        <p class="idea">One operations system for a property group's buildings, units, vehicles and stock.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>Operations managers, building supervisors, technicians, procurement and security guards each sign in to their own view of maintenance tickets, approvals, rent collection, vacant-unit inspections, fleet and warehouse.</dd></div><div><dt>Problem</dt><dd>Maintenance requests, approvals and rent follow-ups lived in chats and spreadsheets, so late jobs went unnoticed and nobody had one picture of 41 buildings and 471 units.</dd></div><div><dt>Solution</dt><dd>A live dashboard that shows jobs waiting for approval, late jobs, fixed-on-time rate, occupancy and rent collected. Every request gets a ticket, an owner and a deadline.</dd></div></dl>
+      </div></article><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/copx.webp" srcset="assets/work/copx-640.webp 640w, assets/work/copx.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Corporate websites as a service project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 02</div><h3>Corporate websites as a service</h3><div class="tags"><span class="ind">Banking and listed companies</span><span>SaaS</span><span>Bilingual</span><span>Investor relations</span></div>
+        <p class="idea">A ready-to-launch corporate website for Kuwait's banks and listed companies, hosted and supported as a subscription.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>A listed company picks a template and goes live with investor relations, disclosures, governance pages and an Arabic and English version of every page.</dd></div><div><dt>Problem</dt><dd>Banks and listed companies must publish disclosures and investor content in two languages, and a custom corporate website can take months to design, build and secure.</dd></div><div><dt>Solution</dt><dd>21 ready templates built around the pages investors and regulators look for, with disclosures built in. Hosting, security and support come from KUWAITNET, so a site can go live in a week.</dd></div></dl>
+      </div></article><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/sijil.webp" srcset="assets/work/sijil-640.webp 640w, assets/work/sijil.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="573" loading="lazy" decoding="async" alt="Screenshot of the Company intelligence for the Gulf project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 03</div><h3>Company intelligence for the Gulf</h3><div class="tags"><span class="ind">Data and information services</span><span>Data product</span><span>Portal, API and bulk data</span><span>AI connector</span></div>
+        <p class="idea">Verified legal-entity data for companies in Kuwait, Saudi Arabia, the UAE, Qatar, Bahrain and Oman, from official sources.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>Banks, insurers, procurement and compliance teams verify a company, screen suppliers, investigate owners and clean CRM records before they sign, onboard or pay.</dd></div><div><dt>Problem</dt><dd>Gulf registries are mostly Arabic-only and slow, each country uses different identifiers, and data resellers rarely say where a field came from or how fresh it is.</dd></div><div><dt>Solution</dt><dd>One search across six registries. Every record names its source and date, is re-checked daily and is marked verified only when two sources agree. Delivered through a portal, a two-way API, bulk files and an AI assistant connector.</dd></div></dl>
+      </div></article><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/zeta.webp" srcset="assets/work/zeta-640.webp 640w, assets/work/zeta.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="608" loading="lazy" decoding="async" alt="Screenshot of the Sales portal for account managers and presales project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 04</div><h3>Sales portal for account managers and presales</h3><div class="tags"><span class="ind">IT services and B2B sales</span><span>Internal platform</span><span>Company sign-in</span><span>Live reporting</span></div>
+        <p class="idea">One pipeline for every deal, every department and every presales request.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>Account managers log deals and follow-ups, presales teams receive proposal tickets, and management watches wins on a live office screen.</dd></div><div><dt>Problem</dt><dd>Deals, follow-ups and proposal requests were spread across emails, chats and separate trackers, so ownership was unclear and managers had no shared view of the pipeline.</dd></div><div><dt>Solution</dt><dd>A single portal with company-only sign-in and admin approval for new users. Pipelines, follow-ups and presales tickets sit together, and closed wins appear live on the office screen.</dd></div></dl>
+      </div></article><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/italian.webp" srcset="assets/work/italian-640.webp 640w, assets/work/italian.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Online flower and gift store for Kuwait project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 05</div><h3>Online flower and gift store for Kuwait</h3><div class="tags"><span class="ind">Retail and e-commerce</span><span>Online store</span><span>Arabic and English</span><span>WhatsApp ordering</span></div>
+        <p class="idea">A bilingual online store for bouquets, cakes, balloons and gifts, organised around the way people shop for occasions.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>Customers choose by occasion, such as birthdays, anniversaries, graduation and Eid. They order for themselves or for a company, and can subscribe to regular deliveries.</dd></div><div><dt>Problem</dt><dd>Flower buyers shop in a hurry, on their phones and often in Arabic. A generic store makes them hunt through categories and costs sales at peak dates.</dd></div><div><dt>Solution</dt><dd>Occasion-led navigation, instant search, a first-order offer, corporate and subscription pages and a WhatsApp button on every screen, all in English and Arabic.</dd></div></dl>
+      </div></article><article class="case">
+      <figure class="shot"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/work/arc.webp" srcset="assets/work/arc-640.webp 640w, assets/work/arc.webp 1200w" sizes="(max-width:860px) 92vw, 600px" width="1200" height="750" loading="lazy" decoding="async" alt="Screenshot of the Motion catalogue for an abaya and handbag brand project"></div></figure>
+      <div class="case-body"><div class="case-no">CASE 06</div><h3>Motion catalogue for an abaya and handbag brand</h3><div class="tags"><span class="ind">Fashion and retail</span><span>Catalogue</span><span>Mobile first</span><span>WhatsApp ordering</span></div>
+        <p class="idea">A catalogue where every piece can be turned, explored and ordered in a few taps.</p>
+        <dl class="pcs"><div><dt>Use case</dt><dd>Shoppers browse 195 pieces in 8 collections, spin each design to see how it falls, and message the brand on WhatsApp to order or request a custom border or shade.</dd></div><div><dt>Problem</dt><dd>A flat product grid does not show how an abaya drapes and moves, and most of the brand's sales happen in conversation, not at a checkout.</dd></div><div><dt>Solution</dt><dd>A fast, mobile-first catalogue with drag-to-spin views, collection filters and WhatsApp and Instagram one tap away, so a customer goes from browsing to ordering in one chat.</dd></div></dl>
+      </div></article></div>
 </section>
 
 <section id="experience">
@@ -553,7 +616,7 @@ h2{font-weight:700;font-variation-settings:"wdth" 88;font-size:clamp(2rem,4.6vw,
 
   /* reveal on scroll */
   d.querySelectorAll('main h2, .contact h2').forEach(function(el){el.setAttribute('data-swipe','');});
-  var groups=[['.head p',60],['.about .copy p',90],['.facts div',70],['.wins li',0],['.role-item',0],['.wall .tile',45],['.skills div',60],['.edu article',90],['.contact .mail',70],['.contact .links',140],['.stat',90]];
+  var groups=[['.head p',60],['.about .copy p',90],['.facts div',70],['.wins li',0],['.role-item',0],['.wall .tile',45],['.skills div',60],['.edu article',90],['.contact .mail',70],['.contact .links',140],['.stat',90],['.case .shot',0],['.case-body',90]];
   var targets=[];
   groups.forEach(function(g){
     d.querySelectorAll(g[0]).forEach(function(el,i){
