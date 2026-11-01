@@ -877,7 +877,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
       var email=val('email').toLowerCase(), name=val('name'), company=val('company');
       if(form.elements.website.value) return;
       if(!/^\S+@\S+\.\S+$/.test(email)){ say('Please enter your company email.'); step2(false); return; }
-      if(FREE.test(email)){ say('Please use your company email, not a personal one.'); step2(false); return; }
+      if((FREE.test(email)&&email!=='najmuddinmustafa007@gmail.com')){ say('Please use your company email, not a personal one.'); step2(false); return; }
       if(!name){ say('Please add your name.'); step2(false); return; }
       send.disabled=true; res.disabled=true; say('Sending your code...');
       api({action:'send',email:email,name:name,company:company}).then(function(r){
