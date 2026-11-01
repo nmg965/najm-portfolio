@@ -205,6 +205,12 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 .lockcard p{text-wrap:pretty}
 .lockcard h3,.lockcard p{text-align:left}
 @media (max-width:760px){.lockcard p{font-size:.9rem;line-height:1.5}.cardhead{align-items:flex-start;flex-direction:column;gap:4px}}
+body.gopen .cases.unl,body.gopen .marq-rows.unl,body.gopen .wall.unl{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.gopen .unl img{pointer-events:none;-webkit-user-drag:none;user-drag:none}
+body.gblur .cases.unl,body.gblur .marq-rows.unl,body.gblur .wall.unl{filter:blur(28px);transition:filter .1s}
+.wm{position:fixed;inset:0;z-index:90;pointer-events:none;background-repeat:repeat;opacity:.13}
+.sess{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:95;background:#06314e;color:#fff;font-size:.78rem;font-weight:600;padding:7px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;white-space:nowrap}
+@media print{.cases.unl,.marq-rows.unl,.wall.unl,.wm{display:none!important}body::after{content:"Private content. Not available for printing.";display:block;padding:40px;font:16px Arial}}
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,64px);align-items:center}
 .full{position:relative;margin:0 18px 18px 0;max-width:420px;width:calc(100% - 18px)}
@@ -866,10 +872,49 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   }
   var FN='https://bnlzfrrvyocnplexpfqy.supabase.co/functions/v1/access-otp';
   function api(body){ return fetch(FN,{method:'POST',headers:{'Content-Type':'application/json','apikey':SBK},body:JSON.stringify(body)}).then(function(r){return r.json();}); }
+  function clearSess(){ try{['njw_token','njw_exp','njw_em'].forEach(function(k){localStorage.removeItem(k);});}catch(e){} }
+  var sessTimer=null;
+  function relock(){
+    clearSess(); try{sessionStorage.setItem('njw_ended','1');}catch(e){}
+    location.reload();
+  }
+  function startSession(exp,email){
+    d.body.classList.add('gopen');
+    var wm=d.createElement('div'); wm.className='wm'; wm.setAttribute('aria-hidden','true');
+    var t=esc(email||'verified viewer'), svg="<svg xmlns='http://www.w3.org/2000/svg' width='360' height='200'><text x='20' y='110' font-family='Arial' font-size='15' fill='#888' transform='rotate(-24 180 100)'>"+t+" - njw3.com</text></svg>";
+    wm.style.backgroundImage="url(\"data:image/svg+xml,"+encodeURIComponent(svg)+"\")";
+    d.body.appendChild(wm);
+    var chip=d.createElement('div'); chip.className='sess'; chip.setAttribute('role','status'); d.body.appendChild(chip);
+    function tick(){
+      var left=Math.ceil((exp-Date.now())/1000);
+      if(left<=0){ relock(); return; }
+      chip.textContent='Private view ends in '+Math.floor(left/60)+':'+('0'+(left%60)).slice(-2);
+    }
+    tick(); sessTimer=setInterval(tick,1000);
+    d.addEventListener('visibilitychange',tick);
+    // deterrents: hide the content whenever the page loses focus or a capture key is used
+    function hide(){ d.body.classList.add('gblur'); }
+    function show(){ if(d.hasFocus()&&!d.hidden) d.body.classList.remove('gblur'); }
+    window.addEventListener('blur',hide); window.addEventListener('focus',show);
+    d.addEventListener('visibilitychange',function(){ d.hidden?hide():show(); });
+    d.addEventListener('keydown',function(e){
+      var k=(e.key||'').toLowerCase();
+      if(k==='printscreen'||k==='meta'&&e.shiftKey||(e.metaKey&&e.shiftKey&&/[345s]/.test(k))||((e.ctrlKey||e.metaKey)&&/[ps]/.test(k))){
+        hide(); try{navigator.clipboard.writeText('Private content');}catch(x){}
+        setTimeout(show,1500); if(k!=='printscreen') e.preventDefault();
+      }
+    },true);
+    d.addEventListener('keyup',function(e){ if((e.key||'')==='PrintScreen'){ try{navigator.clipboard.writeText('Private content');}catch(x){} } });
+    ['contextmenu','dragstart','copy','cut','selectstart'].forEach(function(ev){
+      d.addEventListener(ev,function(e){ if(e.target.closest&&e.target.closest('.unl')) e.preventDefault(); },true);
+    });
+  }
   function tryToken(tok){
+    var exp=0, em=''; try{ exp=+localStorage.getItem('njw_exp')||0; em=localStorage.getItem('njw_em')||''; }catch(e){}
+    if(!exp||exp<=Date.now()){ clearSess(); return Promise.resolve(false); }
     return rpc('get_locked',{p_token:tok}).then(function(data){
-      if(data){ unlock(data); return true; }
-      try{localStorage.removeItem('njw_token');}catch(e){} return false;
+      if(data){ unlock(data); startSession(exp,em); return true; }
+      clearSess(); return false;
     });
   }
   d.querySelectorAll('.lockform').forEach(function(form){
@@ -882,7 +927,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
       s1.hidden=on; s2.hidden=!on;
       if(on){
         h3.textContent='Thank you for your interest';
-        intro.textContent='I have emailed a 6-digit code to '+email+'. Please enter it below to view my private projects and clients. The code is valid for 10 minutes.';
+        intro.textContent='I have emailed a 6-digit code to '+email+'. Please enter it below to view my private projects and clients. The code is valid for 10 minutes, and your private view stays open for 10 minutes once verified.';
         form.elements.code.value=''; form.elements.code.focus();
       } else { h3.textContent=h3o; intro.textContent=po; }
     }
@@ -907,7 +952,10 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
       if(code.length!==6){ say('Enter the 6-digit code from your email.'); return; }
       ver.disabled=true; say('Checking...');
       api({action:'verify',email:email,code:code}).then(function(r){
-        if(r.status==='ok'&&r.content){ try{localStorage.setItem('njw_token',r.token);}catch(e){} say('Verified. Unlocking...'); unlock(r.content); return; }
+        if(r.status==='ok'&&r.content){
+          var exp=r.expires_at?new Date(r.expires_at).getTime():Date.now()+600000;
+          try{localStorage.setItem('njw_token',r.token);localStorage.setItem('njw_exp',String(exp));localStorage.setItem('njw_em',email);}catch(e){}
+          say('Verified. Unlocking...'); unlock(r.content); startSession(exp,email); return; }
         var m={ wrong:'That code is not right. Please check and try again.', expired:'That code has expired. Please request a new one.',
           limit:'Too many wrong attempts. Please request a new code.', denied:'Sorry, this email is not eligible for access.' };
         say(m[r.status]||'Something went wrong. Please try again.');
@@ -915,10 +963,12 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
       }).catch(function(){ say('Something went wrong. Please try again in a moment.'); })
         .then(function(){ ver.disabled=false; });
     }
+    try{ if(sessionStorage.getItem('njw_ended')){ say('Your 10-minute private view has ended. Please verify your email again to continue.'); } }catch(e){}
     form.addEventListener('submit',function(e){ e.preventDefault(); if(s2.hidden) doSend(); else doVerify(); });
     res.addEventListener('click',doSend);
     back.addEventListener('click',function(){ step2(false); say(''); });
   });
+  try{ if(!localStorage.getItem('njw_token')) {} else {} }catch(e){}
   try{ var tok=localStorage.getItem('njw_token'); if(tok) tryToken(tok).catch(function(){}); }catch(e){}
 })();
 </script>
