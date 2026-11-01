@@ -196,6 +196,10 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   .lockcard .lockic{width:36px;height:36px}
 }
 
+.cform .s1,.cform .s2{display:grid;gap:8px}
+.cform [hidden]{display:none!important}
+.codein{letter-spacing:.4em;font-weight:600;text-align:center;font-size:1.2rem!important}
+.row2l{display:flex;flex-wrap:wrap;gap:6px 18px}
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,64px);align-items:center}
 .full{position:relative;margin:0 18px 18px 0;max-width:420px;width:calc(100% - 18px)}
@@ -453,7 +457,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 
 <div class="card marq" aria-label="Clients I have worked with">
   <div class="cardhead"><h2>Trusted by banks, government and brands</h2></div>
-  <div class="marq-rows lockzone" id="zone-marq"><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="lockbox"><a class="btn lime" href="#clients">Client names are private. Request access</a></div></div>
+  <div class="marq-rows lockzone" id="zone-marq"><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="lockbox"><a class="btn lime" href="#clients">Client names are private. Verify your email to view</a></div></div>
 </div>
 
 <section class="card about" id="about">
@@ -488,14 +492,20 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 
 <section class="workwrap" id="work">
   <div class="workhead"><span class="kick">My dev playground</span><span class="privchip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Private, by request</span><h2>Ideas I turned into <em>live platforms</em></h2><p>From a rough idea, to research, to build, to <span class="rot"><span class="rot-w on">launch</span><span class="rot-w" aria-hidden="true">go-live</span><span class="rot-w" aria-hidden="true">real users</span><span class="rot-w" aria-hidden="true">scale</span></span>. Every platform here is my own work, and every one is live in the real world.</p></div>
-  <div class="lockzone" id="zone-work"><div class="lock-preview" aria-hidden="true"><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Private playground</h3><p>These are my own platforms, so I show them to people I can vouch for. Enter your company email and I will review your request. Once I approve it, you can see everything.</p>
+  <div class="lockzone" id="zone-work"><div class="lock-preview" aria-hidden="true"><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Private playground</h3><p>These are my own platforms, so I show them to people I can vouch for. Verify your company email with a one-time code and you can see everything straight away.</p>
       <form class="lockform cform" novalidate>
-        <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
-        <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
-        <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
-        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="send" type="submit">Request access</button>
-        <button class="lnk" type="button">Already approved? Unlock</button>
+        <div class="s1">
+          <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
+          <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
+          <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="send" type="submit">Email me a code</button>
+        </div>
+        <div class="s2" hidden>
+          <input name="code" class="codein" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code" aria-label="6-digit code">
+          <button class="verify send" type="submit">Verify and unlock</button>
+          <div class="row2l"><button class="lnk resend" type="button">Resend code</button><button class="lnk back" type="button">Use a different email</button></div>
+        </div>
         <div class="msg" role="status" aria-live="polite"></div>
       </form></div></div></div>
 </section>
@@ -548,14 +558,20 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 
 <section class="card" id="clients">
   <div class="cardhead"><h2>Clients I have worked with</h2><span>Private, by request</span></div>
-  <div class="lockzone wall-lock" id="zone-clients"><div class="lock-preview wallph" aria-hidden="true"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Client list is private</h3><p>Out of respect for my clients, the names stay hidden. Request access with your company email and I will approve it if it is a fit.</p>
+  <div class="lockzone wall-lock" id="zone-clients"><div class="lock-preview wallph" aria-hidden="true"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Client list is private</h3><p>Out of respect for my clients, the names stay hidden. Verify your company email with a one-time code to see the list.</p>
       <form class="lockform cform" novalidate>
-        <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
-        <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
-        <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
-        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="send" type="submit">Request access</button>
-        <button class="lnk" type="button">Already approved? Unlock</button>
+        <div class="s1">
+          <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
+          <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
+          <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
+          <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="send" type="submit">Email me a code</button>
+        </div>
+        <div class="s2" hidden>
+          <input name="code" class="codein" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="6-digit code" autocomplete="one-time-code" aria-label="6-digit code">
+          <button class="verify send" type="submit">Verify and unlock</button>
+          <div class="row2l"><button class="lnk resend" type="button">Resend code</button><button class="lnk back" type="button">Use a different email</button></div>
+        </div>
         <div class="msg" role="status" aria-live="polite"></div>
       </form></div></div></div>
 </section>
@@ -843,41 +859,54 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
     if(reduce||!('IntersectionObserver' in window)){ Array.prototype.forEach.call(ps,function(p){p.classList.add('draw');}); }
     else { var po2=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('draw'); po2.unobserve(e.target);} }); },{threshold:0.45}); Array.prototype.forEach.call(ps,function(p){ po2.observe(p); }); }
   }
-  function tryUnlock(email,msg){
-    return rpc('get_locked',{p_email:email}).then(function(data){
-      if(data){ try{localStorage.setItem('njw_access',email);}catch(e){} unlock(data); return true; }
-      if(msg) msg.textContent='That email is not approved yet. Send a request below and I will review it.';
-      return false;
+  var FN='https://bnlzfrrvyocnplexpfqy.supabase.co/functions/v1/access-otp';
+  function api(body){ return fetch(FN,{method:'POST',headers:{'Content-Type':'application/json','apikey':SBK},body:JSON.stringify(body)}).then(function(r){return r.json();}); }
+  function tryToken(tok){
+    return rpc('get_locked',{p_token:tok}).then(function(data){
+      if(data){ unlock(data); return true; }
+      try{localStorage.removeItem('njw_token');}catch(e){} return false;
     });
   }
   d.querySelectorAll('.lockform').forEach(function(form){
-    var msg=form.querySelector('.msg'), btn=form.querySelector('.send'), lnk=form.querySelector('.lnk');
-    function mail(){ return (form.elements.email.value||'').trim().toLowerCase(); }
-    form.addEventListener('submit',function(e){
-      e.preventDefault(); if(form.elements.website.value) return;
-      var email=mail(), name=(form.elements.name.value||'').trim(), company=(form.elements.company.value||'').trim();
-      if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent='Please enter your company email.'; return; }
-      if(FREE.test(email)){ msg.textContent='Please use your company email, not a personal one.'; return; }
-      if(!name){ msg.textContent='Please add your name.'; return; }
-      btn.disabled=true; msg.textContent='Sending your request...';
-      rpc('request_access',{p_email:email,p_name:name,p_company:company}).then(function(st){
-        if(st==='approved'){ msg.textContent='You are approved. Unlocking...'; return tryUnlock(email,msg); }
-        if(st==='free_email'){ msg.textContent='Please use your company email, not a personal one.'; return; }
-        if(st==='invalid'){ msg.textContent='That email does not look right.'; return; }
-        if(st==='denied'){ msg.textContent='Sorry, this request was not approved.'; return; }
-        var t='Hello Najmuddin, I just requested access to your portfolio with '+email+(company?' ('+company+')':'')+'. Name: '+name+'.';
-        msg.innerHTML='Request sent. I will review it and approve it, then come back here and press <b>Already approved? Unlock</b> with the same email. <a href="https://wa.me/96566906494?text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">Nudge me on WhatsApp</a> to speed it up.';
-      }).catch(function(){ msg.textContent='Something went wrong. Please try again in a moment.'; })
-        .then(function(){ btn.disabled=false; });
-    });
-    lnk.addEventListener('click',function(){
-      var email=mail();
-      if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent='Enter the email I approved, then press unlock.'; return; }
-      msg.textContent='Checking...';
-      tryUnlock(email,msg).catch(function(){ msg.textContent='Could not check right now. Please try again.'; });
-    });
+    var msg=form.querySelector('.msg'), s1=form.querySelector('.s1'), s2=form.querySelector('.s2');
+    var send=form.querySelector('.send'), ver=form.querySelector('.verify'), res=form.querySelector('.resend'), back=form.querySelector('.back');
+    function say(t){ msg.textContent=t; }
+    function val(n){ return (form.elements[n].value||'').trim(); }
+    function step2(on){ s1.hidden=on; s2.hidden=!on; if(on) form.elements.code.focus(); }
+    function doSend(){
+      var email=val('email').toLowerCase(), name=val('name'), company=val('company');
+      if(form.elements.website.value) return;
+      if(!/^\S+@\S+\.\S+$/.test(email)){ say('Please enter your company email.'); step2(false); return; }
+      if(FREE.test(email)){ say('Please use your company email, not a personal one.'); step2(false); return; }
+      if(!name){ say('Please add your name.'); step2(false); return; }
+      send.disabled=true; res.disabled=true; say('Sending your code...');
+      api({action:'send',email:email,name:name,company:company}).then(function(r){
+        var m={ sent:'', wait:'Please wait a few seconds before asking for another code.', limit:'Too many codes requested. Please try again in an hour.',
+          invalid:'That email does not look right.', free_email:'Please use your company email, not a personal one.',
+          mail_error:'I could not send the email right now. Please try again shortly, or message me on WhatsApp.' };
+        if(r.status==='sent'){ step2(true); say('I emailed a 6-digit code to '+email+'. It expires in 10 minutes.'); }
+        else say(m[r.status]||'Something went wrong. Please try again.');
+      }).catch(function(){ say('Something went wrong. Please try again in a moment.'); })
+        .then(function(){ send.disabled=false; res.disabled=false; });
+    }
+    function doVerify(){
+      var email=val('email').toLowerCase(), code=val('code').replace(/\D/g,'');
+      if(code.length!==6){ say('Enter the 6-digit code from your email.'); return; }
+      ver.disabled=true; say('Checking...');
+      api({action:'verify',email:email,code:code}).then(function(r){
+        if(r.status==='ok'&&r.content){ try{localStorage.setItem('njw_token',r.token);}catch(e){} say('Verified. Unlocking...'); unlock(r.content); return; }
+        var m={ wrong:'That code is not right. Please check and try again.', expired:'That code has expired. Please request a new one.',
+          limit:'Too many wrong attempts. Please request a new code.', denied:'Sorry, this email is not eligible for access.' };
+        say(m[r.status]||'Something went wrong. Please try again.');
+        if(r.status==='expired'||r.status==='limit') step2(false);
+      }).catch(function(){ say('Something went wrong. Please try again in a moment.'); })
+        .then(function(){ ver.disabled=false; });
+    }
+    form.addEventListener('submit',function(e){ e.preventDefault(); if(s2.hidden) doSend(); else doVerify(); });
+    res.addEventListener('click',doSend);
+    back.addEventListener('click',function(){ step2(false); say(''); });
   });
-  try{ var saved=localStorage.getItem('njw_access'); if(saved) tryUnlock(saved).catch(function(){}); }catch(e){}
+  try{ var tok=localStorage.getItem('njw_token'); if(tok) tryToken(tok).catch(function(){}); }catch(e){}
 })();
 </script>
 </body></html>
