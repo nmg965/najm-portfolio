@@ -208,9 +208,10 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 body.gopen .cases.unl,body.gopen .marq-rows.unl,body.gopen .wall.unl{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body.gopen .unl img{pointer-events:none;-webkit-user-drag:none;user-drag:none}
 body.gblur .cases.unl,body.gblur .marq-rows.unl,body.gblur .wall.unl{filter:blur(28px);transition:filter .1s}
-.wm{position:fixed;inset:0;z-index:90;pointer-events:none;background-repeat:repeat;opacity:.13}
+body.gopen .cases.unl,body.gopen .marq-rows.unl,body.gopen .wall.unl{position:relative}
+body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.unl::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;background-image:var(--wm);background-repeat:repeat;opacity:.16}
 .sess{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:95;background:#06314e;color:#fff;font-size:.78rem;font-weight:600;padding:7px 14px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;white-space:nowrap}
-@media print{.cases.unl,.marq-rows.unl,.wall.unl,.wm{display:none!important}body::after{content:"Private content. Not available for printing.";display:block;padding:40px;font:16px Arial}}
+@media print{.cases.unl,.marq-rows.unl,.wall.unl{display:none!important}body::after{content:"Private content. Not available for printing.";display:block;padding:40px;font:16px Arial}}
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,64px);align-items:center}
 .full{position:relative;margin:0 18px 18px 0;max-width:420px;width:calc(100% - 18px)}
@@ -880,10 +881,8 @@ body.gblur .cases.unl,body.gblur .marq-rows.unl,body.gblur .wall.unl{filter:blur
   }
   function startSession(exp,email){
     d.body.classList.add('gopen');
-    var wm=d.createElement('div'); wm.className='wm'; wm.setAttribute('aria-hidden','true');
     var t=esc(email||'verified viewer'), svg="<svg xmlns='http://www.w3.org/2000/svg' width='360' height='200'><text x='20' y='110' font-family='Arial' font-size='15' fill='#888' transform='rotate(-24 180 100)'>"+t+" - njw3.com</text></svg>";
-    wm.style.backgroundImage="url(\"data:image/svg+xml,"+encodeURIComponent(svg)+"\")";
-    d.body.appendChild(wm);
+    d.documentElement.style.setProperty('--wm','url("data:image/svg+xml,'+encodeURIComponent(svg)+'")');
     var chip=d.createElement('div'); chip.className='sess'; chip.setAttribute('role','status'); d.body.appendChild(chip);
     function tick(){
       var left=Math.ceil((exp-Date.now())/1000);
