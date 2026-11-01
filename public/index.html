@@ -200,6 +200,11 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 .cform [hidden]{display:none!important}
 .codein{letter-spacing:.4em;font-weight:600;text-align:center;font-size:1.2rem!important}
 .row2l{display:flex;flex-wrap:wrap;gap:6px 18px}
+.cardhead h2{line-height:1.15}
+.marq .lockbox .btn{width:auto;max-width:calc(100% - 28px);min-height:46px;height:auto;padding:12px 22px;text-align:center;line-height:1.3;font-size:.95rem;white-space:normal}
+.lockcard p{text-wrap:pretty}
+.lockcard h3,.lockcard p{text-align:left}
+@media (max-width:760px){.lockcard p{font-size:.9rem;line-height:1.5}.cardhead{align-items:flex-start;flex-direction:column;gap:4px}}
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,64px);align-items:center}
 .full{position:relative;margin:0 18px 18px 0;max-width:420px;width:calc(100% - 18px)}
@@ -872,7 +877,15 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
     var send=form.querySelector('.send'), ver=form.querySelector('.verify'), res=form.querySelector('.resend'), back=form.querySelector('.back');
     function say(t){ msg.textContent=t; }
     function val(n){ return (form.elements[n].value||'').trim(); }
-    function step2(on){ s1.hidden=on; s2.hidden=!on; if(on) form.elements.code.focus(); }
+    var card=form.closest('.lockcard'), h3=card.querySelector('h3'), intro=card.querySelector('p'), h3o=h3.textContent, po=intro.textContent;
+    function step2(on,email){
+      s1.hidden=on; s2.hidden=!on;
+      if(on){
+        h3.textContent='Thank you for your interest';
+        intro.textContent='I have emailed a 6-digit code to '+email+'. Please enter it below to view my private projects and clients. The code is valid for 10 minutes.';
+        form.elements.code.value=''; form.elements.code.focus();
+      } else { h3.textContent=h3o; intro.textContent=po; }
+    }
     function doSend(){
       var email=val('email').toLowerCase(), name=val('name'), company=val('company');
       if(form.elements.website.value) return;
@@ -884,7 +897,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
         var m={ sent:'', wait:'Please wait a few seconds before asking for another code.', limit:'Too many codes requested. Please try again in an hour.',
           invalid:'That email does not look right.', free_email:'Please use your company email, not a personal one.',
           mail_error:'I could not send the email right now. Please try again shortly, or message me on WhatsApp.' };
-        if(r.status==='sent'){ step2(true); say('I emailed a 6-digit code to '+email+'. It expires in 10 minutes.'); }
+        if(r.status==='sent'){ step2(true,email); say(''); }
         else say(m[r.status]||'Something went wrong. Please try again.');
       }).catch(function(){ say('Something went wrong. Please try again in a moment.'); })
         .then(function(){ send.disabled=false; res.disabled=false; });
