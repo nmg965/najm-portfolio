@@ -265,9 +265,20 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
 .workwrap .lockcard .cform input::placeholder{color:rgba(255,255,255,.62)}
 .workwrap .lockcard .lnk,.workwrap .lockcard .msg{color:#fff}
 .cases{display:grid;gap:clamp(10px,1.4vw,16px)}
-.case{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);align-items:center}
-.case:nth-child(even){grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+.cin{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);align-items:center}
+.case:nth-child(even) .cin{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
 .case:nth-child(even) .shot{order:2}
+.card.case{padding:0;overflow:hidden}
+.chead{display:flex;align-items:center;gap:clamp(10px,2vw,20px);width:100%;padding:clamp(16px,2.2vw,24px) clamp(18px,3vw,38px);text-align:left;color:inherit;cursor:pointer}
+.chead .case-no{flex:none}
+.chead .ctitle{flex:1;min-width:0;font-weight:600;font-size:clamp(1.05rem,2.2vw,1.55rem);line-height:1.2;letter-spacing:-.01em}
+.chead .cind{flex:none;font-size:.8rem;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--lime);color:var(--lime-ink)}
+.chead svg{flex:none;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s}
+.case.open .chead svg{transform:rotate(180deg)}
+.cpanel{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1),visibility 0s .45s}
+.case.open .cpanel{grid-template-rows:1fr;visibility:visible;transition-delay:0s}
+.cpin{min-height:0;overflow:hidden}
+.cin{padding:4px clamp(18px,3vw,38px) clamp(20px,3vw,38px)}
 .shot{margin:0}
 .frame{border-radius:20px;background:var(--soft);border:1px solid var(--line);overflow:hidden;box-shadow:0 26px 50px -26px rgba(0,0,0,.45);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .fbar{display:flex;gap:6px;padding:10px 14px;background:var(--soft)}
@@ -420,7 +431,8 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
   .portrait{justify-self:center;max-width:330px;margin-top:10px}
   .about,.contact-card,.wins{grid-template-columns:minmax(0,1fr)}
   .full{justify-self:center;max-width:330px}
-  .case,.case:nth-child(even){grid-template-columns:minmax(0,1fr)}
+  .cin,.case:nth-child(even) .cin{grid-template-columns:minmax(0,1fr)}
+  .chead{flex-wrap:wrap;row-gap:6px}.chead .case-no{flex:0 0 100%;font-size:.74rem}.chead .ctitle{flex:1 1 60%}.chead .cind{order:5;flex:0 0 auto}
   .case:nth-child(even) .shot{order:0}
   .pcs>div{grid-template-columns:78px minmax(0,1fr);gap:10px}
   .xhead{grid-template-columns:56px minmax(0,1fr) 44px;gap:10px 12px}
@@ -872,7 +884,8 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
     if(c.tall) shot='<div class="frame">'+bar+'<div class="vp" data-pan><img class="pan" src="assets/work/'+c.k+'-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the '+esc(c.n)+' project"><span class="sb" aria-hidden="true"></span></div></div>';
     else shot='<div class="frame">'+bar+'<div class="vp zoom" data-pan><img class="pan" src="assets/work/'+c.k+'.webp" srcset="assets/work/'+c.k+'-640.webp 640w, assets/work/'+c.k+'.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="'+c.h+'" loading="lazy" decoding="async" alt="Screenshot of the '+esc(c.n)+' project"></div></div>';
     var tags='<span class="ind">'+esc(c.i)+'</span>'+c.t.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');
-    return '<article class="card case"><figure class="shot">'+shot+'</figure><div class="case-body"><div class="case-no">CASE '+('0'+(i+1)).slice(-2)+'</div><h3>'+esc(c.n)+'</h3><div class="tags">'+tags+'</div><p class="idea">'+esc(c.d)+'</p><dl class="pcs"><div><dt>Use case</dt><dd>'+esc(c.u)+'</dd></div><div><dt>Problem</dt><dd>'+esc(c.p)+'</dd></div><div><dt>Solution</dt><dd>'+esc(c.s)+'</dd></div></dl></div></article>';
+    var chev='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+    return '<article class="card case acc'+(i===0?' open':'')+'"><button class="chead" type="button" aria-expanded="'+(i===0?'true':'false')+'"><span class="case-no">CASE '+('0'+(i+1)).slice(-2)+'</span><span class="ctitle">'+esc(c.n)+'</span><span class="cind">'+esc(c.i)+'</span>'+chev+'</button><div class="cpanel"><div class="cpin"><div class="cin"><figure class="shot">'+shot+'</figure><div class="case-body"><div class="tags">'+c.t.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div><p class="idea">'+esc(c.d)+'</p><dl class="pcs"><div><dt>Use case</dt><dd>'+esc(c.u)+'</dd></div><div><dt>Problem</dt><dd>'+esc(c.p)+'</dd></div><div><dt>Solution</dt><dd>'+esc(c.s)+'</dd></div></dl></div></div></div></div></article>';
   }
   var unlocked=false;
   function unlock(data){
@@ -884,6 +897,7 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
     if(zc){ zc.className='wall unl'; zc.innerHTML=data.clients.map(function(c){return tileH(c,false);}).join(''); var w=d.createElement('ul'); w.className='wall unl'; w.innerHTML=zc.innerHTML; zc.parentNode.replaceChild(w,zc); }
     d.querySelectorAll('.cardhead span').forEach(function(sp){ if(sp.textContent==='Private, by request') sp.textContent='Banks, insurers, government, schools, hotels and brands'; });
     var pc=d.querySelector('.privchip'); if(pc) pc.remove();
+    if(zw){ zw.querySelectorAll('.chead').forEach(function(b){ b.addEventListener('click',function(){ var a=b.parentNode, o=a.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false'); setTimeout(function(){ onScroll(); },460); }); }); }
     hl(zw||d);
     pans=d.querySelectorAll('[data-pan]'); onScroll();
     var ps=zw?zw.querySelectorAll('.pcs'):[];
