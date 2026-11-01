@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Najmuddin Mustafa Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&display=swap">
+<link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" as="image" href="assets/najmuddin-960.webp" imagesrcset="assets/najmuddin-640.webp 640w, assets/najmuddin-960.webp 960w" imagesizes="(max-width:860px) 330px, 440px" fetchpriority="high"><style>@font-face{font-family:Outfit;font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/outfit-latin.woff2) format("woff2")}</style>
 <style>body{margin:0}
 :root{
   --page:#0d0d0c; --shell:#efefe9; --card:#ffffff; --soft:#f5f5f0; --soft2:#ebebe4;
@@ -54,7 +54,7 @@ section{scroll-margin-top:110px}
 .cardhead span{color:var(--muted);font-size:.95rem}
 h2[data-swipe]{clip-path:inset(0 0 62% 0);transform:translateY(-.25em);transition:clip-path .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
 .js h2[data-swipe].is-in{clip-path:inset(-8% -3% -30% -3%);transform:none}
-.js [data-reveal]{opacity:.15;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .7s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.js [data-reveal]{opacity:.15;transform:translateY(18px);transition:opacity .5s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .5s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .js [data-reveal].is-in{opacity:1;transform:none}
 
 /* hero */
@@ -321,11 +321,11 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
 .split{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(10px,1.4vw,16px);align-items:start}
 .stack{display:grid;gap:clamp(10px,1.4vw,16px)}
 .split>*,.stack>*,main>*,.xhead>*,.xlist,.xrow{min-width:0}
-.ypills{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.ypills{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:5px;border-radius:999px;background:var(--soft);scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scroll-behavior:smooth;touch-action:pan-x pan-y;position:relative}
 .ypills::-webkit-scrollbar{display:none}
-.ypill{flex:none;min-height:46px;padding:0 22px;border-radius:999px;border:1px solid var(--line);background:var(--card);font-weight:500;transition:background .2s,color .2s}
-.ypill:hover{border-color:var(--ink)}
-.ypill.on{background:var(--on);color:var(--on-ink);border-color:var(--on)}
+.ypill{flex:none;min-height:42px;padding:0 20px;border-radius:999px;border:0;background:transparent;color:var(--muted);font-weight:500;scroll-snap-align:center;transition:background .28s cubic-bezier(.2,.7,.2,1),color .28s,transform .28s}
+.ypill:hover{color:var(--ink)}.ypill:active{transform:scale(.96)}
+.ypill.on{background:var(--lime);color:var(--lime-ink);font-weight:600;box-shadow:0 6px 16px -8px color-mix(in srgb,var(--lime) 80%,transparent)}
 .axis{position:relative;height:24px;margin:22px 0 6px}
 .axisin{position:absolute;right:calc(112px + 14px);width:clamp(170px,30%,340px);top:0;bottom:0}
 .axis span{position:absolute;top:0;transform:translateX(-50%);font-size:.74rem;color:var(--muted);transition:color .2s}
@@ -441,6 +441,9 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
   .xmore{grid-column:3;grid-row:1}.xmore{font-size:0}
   .xin{padding:0 18px 0 18px}
   .axis{display:none}
+  .ypills{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 18px,#000 calc(100% - 26px),transparent);padding:5px 16px}
+  .ypill{min-height:40px;padding:0 18px;font-size:.95rem}
+  .workwrap #zone-work,.workwrap .lockzone,.workwrap .card.case,.workwrap .lockcard{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
   .wordmark{display:none}.topbar{padding-left:10px}
   .tools .ic{display:none}
   .chip{padding:6px 10px;border-radius:12px}.chip b{font-size:.74rem}.chip span{font-size:.62rem}
@@ -569,17 +572,17 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
       <div class="xpanel" id="xp0"><div class="xin"><p class="step">Senior Account Manager from September 2026. Account Manager from 2021 to August 2026.</p><ul><li>Built a portfolio of 20+ enterprise clients and beat quarterly sales targets by 40%.</li><li>Raised client retention by 25% through post-sales support and technical advice.</li><li>Pitched products, services and combined packages, lifting successful contract negotiations on complex IT projects by 30%.</li><li>Negotiated sales terms, maintenance and ODP packages and long-term contracts.</li><li>Advise clients across KUWAITNET&#x27;s services: Red Hat, AWS cloud, managed infrastructure, domains and VPS, and cybersecurity.</li><li>Work with design, development and infrastructure teams so web and mobile projects meet scope, budget and timeline.</li></ul></div></div>
     </article><article class="xrow" data-s="2020.0" data-e="2021.0" data-reveal>
       <button class="xhead" aria-expanded="false" aria-controls="xp1">
-        <span class="xlogo" style="--c:#b9a8f7" aria-hidden="true">HT</span>
+        <span class="xlogo" style="--c:#a1bd45" aria-hidden="true">HT</span>
         <span class="xmain"><b>POS, Business &amp; IT Solutions Executive</b><span>H-Tech Solutions · Kuwait</span></span>
-        <span class="xtrack"><span class="tk"><i class="seg" style="left:22.222%;width:11.111%;--c:#b9a8f7"></i></span><span class="xdate">2020 – 2021</span></span>
+        <span class="xtrack"><span class="tk"><i class="seg" style="left:22.222%;width:11.111%;--c:#a1bd45"></i></span><span class="xdate">2020 – 2021</span></span>
         <span class="xmore">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
       </button>
       <div class="xpanel" id="xp1"><div class="xin"><ul><li>Beat sales goals by 30% through client engagement, needs assessment and negotiation.</li><li>Ran the full POS client cycle: cold calls, requirements, proposal, contract, system setup, delivery and 3 to 4 days of on-site training.</li><li>Led corporate website and e-commerce projects from contract to design, development, QA and launch on the client&#x27;s chosen hosting.</li><li>Built custom solutions on WordPress, NopCommerce and Shopify, and handled installation and troubleshooting.</li></ul></div></div>
     </article><article class="xrow" data-s="2018.0" data-e="2020.0" data-reveal>
       <button class="xhead" aria-expanded="false" aria-controls="xp2">
-        <span class="xlogo" style="--c:#8fd0f4" aria-hidden="true">ZP</span>
+        <span class="xlogo" style="--c:#a1bd45" aria-hidden="true">ZP</span>
         <span class="xmain"><b>Mobile Application, Solution Architect</b><span>Zara Pvt. Ltd · Pune, India</span></span>
-        <span class="xtrack"><span class="tk"><i class="seg" style="left:0.000%;width:22.222%;--c:#8fd0f4"></i></span><span class="xdate">2018 – 2019</span></span>
+        <span class="xtrack"><span class="tk"><i class="seg" style="left:0.000%;width:22.222%;--c:#a1bd45"></i></span><span class="xdate">2018 – 2019</span></span>
         <span class="xmore">Details<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
       </button>
       <div class="xpanel" id="xp2"><div class="xin"><ul><li>Managed the company&#x27;s mobile application, including in-product messaging and promotional campaigns.</li><li>Contributed to a 15% improvement in customer satisfaction by promoting product trials, store credit options and exchange policies.</li><li>Handled daily inventory updates and new product arrivals.</li></ul></div></div>
@@ -788,6 +791,7 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
       p.addEventListener('click',function(){
         pillsEl.forEach(function(q){ q.classList.remove('on'); q.setAttribute('aria-pressed','false'); });
         p.classList.add('on'); p.setAttribute('aria-pressed','true');
+        var tr=p.parentNode; try{ tr.scrollTo({left:p.offsetLeft-(tr.clientWidth-p.offsetWidth)/2,behavior:'smooth'}); }catch(e){}
         var y=p.dataset.year;
         labels.forEach(function(l){ l.classList.toggle('on',l.dataset.y===y); });
         if(y==='all'){ list.classList.remove('has-year'); rows.forEach(function(r){ r.hidden=false; }); return; }
@@ -813,7 +817,7 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
   var groups=[['.stat',90],['.win',90],['.case .shot',0],['.case-body',90],['.erow',90],['.sk',60],['.wall .tile',40],['.card.about',0]];
   var targets=[];
   groups.forEach(function(g){
-    d.querySelectorAll(g[0]).forEach(function(el,i){ el.setAttribute('data-reveal',''); el.style.setProperty('--d',((i%6)*g[1])+'ms'); targets.push(el); });
+    d.querySelectorAll(g[0]).forEach(function(el,i){ el.setAttribute('data-reveal',''); el.style.setProperty('--d',((i%6)*Math.round(g[1]*.6))+'ms'); targets.push(el); });
   });
   d.querySelectorAll('.xrow').forEach(function(el,i){ el.style.setProperty('--d',(i*90)+'ms'); targets.push(el); });
   d.querySelectorAll('.wipe,[data-swipe]').forEach(function(el){targets.push(el);});
