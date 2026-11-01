@@ -249,16 +249,17 @@ body.gopen .cases.unl::after,body.gopen .marq-rows.unl::after,body.gopen .wall.u
 .workhead p{color:rgba(255,255,255,.88);margin-top:18px;font-size:clamp(1.1rem,1.8vw,1.4rem);max-width:30em}
 .workwrap .cases{position:relative}
 .workwrap .card{color:var(--ink)}
-.workwrap{background:linear-gradient(135deg,#06314e 0%,#0a4668 52%,#0c5560 100%)}
+.workwrap{--lime:#a1bd45;--lime-ink:#09324e;background:radial-gradient(70% 60% at 92% 0%,rgba(156,207,233,.38),transparent 62%),radial-gradient(60% 55% at 0% 100%,rgba(238,106,123,.26),transparent 62%),radial-gradient(55% 50% at 100% 100%,rgba(161,189,69,.22),transparent 60%),linear-gradient(140deg,#09324e 0%,#0b4166 55%,#0f5278 100%)}
+.workwrap::before,.workwrap::after{display:none}
 .workwrap::after{content:"";position:absolute;left:-12%;bottom:-25%;width:55%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.24),transparent 65%);pointer-events:none}
-.workwrap #zone-work,.workwrap .lockzone,.workwrap .card.case{background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(20px) saturate(1.35);backdrop-filter:blur(20px) saturate(1.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 30px 60px -32px rgba(0,0,0,.55)}
+.workwrap #zone-work,.workwrap .lockzone,.workwrap .card.case{background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(156,207,233,.32);-webkit-backdrop-filter:blur(20px) saturate(1.35);backdrop-filter:blur(20px) saturate(1.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 30px 60px -32px rgba(0,0,0,.55)}
 .workwrap .card.case{color:#fff;--ink:#fff;--muted:rgba(255,255,255,.78);--line:rgba(255,255,255,.2);--soft:rgba(255,255,255,.1);--soft2:rgba(255,255,255,.16)}
 .workwrap .lock-preview{filter:blur(8px);opacity:.5}
 .workwrap .ph-case{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
 .workwrap .ph-shot{background:linear-gradient(135deg,rgba(195,232,59,.16),rgba(255,255,255,.05))}
 .workwrap .ph-lines i{background:rgba(255,255,255,.26)}.workwrap .ph-lines b{background:rgba(255,255,255,.14)}
 .workwrap .lockbox{background:none}
-.workwrap .lockcard{background:linear-gradient(145deg,rgba(8,52,84,.72),rgba(8,52,84,.46));color:#fff;--ink:#fff;--muted:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.3);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 30px 70px -24px rgba(0,0,0,.6)}
+.workwrap .lockcard{background:linear-gradient(145deg,rgba(9,50,78,.74),rgba(9,50,78,.48));color:#fff;--ink:#fff;--muted:rgba(255,255,255,.8);border:1px solid rgba(156,207,233,.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);backdrop-filter:blur(22px) saturate(1.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 30px 70px -24px rgba(0,0,0,.6)}
 .workwrap .lockcard h3{color:#fff}.workwrap .lockcard p{color:rgba(255,255,255,.82)}
 .workwrap .lockcard .cform input{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff}
 .workwrap .lockcard .cform input::placeholder{color:rgba(255,255,255,.62)}
