@@ -136,6 +136,38 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 .wall .tile{width:100%;justify-self:stretch;aspect-ratio:3/2}
 @media (hover:hover){.wall .tile{transition:transform .25s ease,box-shadow .25s ease}.wall .tile:hover{transform:translateY(-4px);box-shadow:0 12px 26px -12px rgba(0,0,0,.35)}}
 
+
+/* locked sections */
+.privchip{display:inline-flex;align-items:center;gap:8px;margin-left:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.4);font-size:.8rem;font-weight:600;letter-spacing:.06em}
+.privchip svg,.lockic svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lockzone{position:relative;min-height:560px;border-radius:var(--r-card);overflow:hidden}
+.lock-preview{display:grid;gap:12px;filter:blur(10px);pointer-events:none;user-select:none;opacity:.95}
+.ph-case{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;background:var(--card);border-radius:var(--r-card);padding:30px;height:300px}
+.ph-shot{border-radius:18px;background:linear-gradient(135deg,var(--soft),var(--soft2))}
+.ph-lines{display:grid;align-content:center;gap:12px}
+.ph-lines i,.ph-lines b{display:block;height:14px;border-radius:9px;background:var(--soft2)}
+.ph-lines b{width:100%;background:var(--soft)}.ph-lines i{height:20px}
+.lockbox{position:absolute;inset:0;display:grid;place-items:center;padding:16px;background:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28))}
+.lockcard{background:var(--card);color:var(--ink);border-radius:28px;padding:clamp(20px,3vw,32px);max-width:460px;width:100%;box-shadow:0 30px 70px -20px rgba(0,0,0,.55)}
+.lockic{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--lime);color:var(--lime-ink)}
+.lockic svg{width:22px;height:22px}
+.lockcard h3{font-size:1.5rem;margin-top:14px}
+.lockcard p{color:var(--muted);margin:8px 0 16px;font-size:.98rem;line-height:1.5}
+.lockcard .cform{gap:10px}
+.lockcard .cform input{padding:13px 16px}
+.cform .lnk{justify-self:start;text-decoration:underline;color:var(--muted);font-size:.92rem}
+.cform .lnk:hover{color:var(--ink)}
+.wallph{grid-template-columns:repeat(5,minmax(0,1fr))}
+.ph-tile{display:block;aspect-ratio:3/2;border-radius:14px;background:var(--soft);border:1px solid var(--line)}
+.marq .ph-tile{height:96px;flex:none}
+.marq .lockzone{min-height:0;border-radius:0}
+.marq .mrow.ph .track{animation:none}
+.marq .lockbox{background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.08))}
+.wall-lock{min-height:420px}
+.unl{animation:unl .7s ease both}
+@keyframes unl{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (max-width:860px){.ph-case{grid-template-columns:1fr;height:360px}.wallph{grid-template-columns:repeat(2,minmax(0,1fr))}.lockzone{min-height:640px}.privchip{margin:10px 0 0}}
+
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,64px);align-items:center}
 .full{position:relative;margin:0 18px 18px 0;max-width:420px;width:calc(100% - 18px)}
@@ -358,7 +390,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 <header class="topbar" id="top">
   <a class="wordmark" href="#overview">Najmuddin</a>
   <nav class="pills" aria-label="Sections">
-    <a class="pill" href="#overview" data-s="overview">Overview</a><a class="pill" href="#about" data-s="about">About Me</a><a class="pill" href="#work" data-s="work">Work</a><a class="pill" href="#experience" data-s="experience">Experience</a><a class="pill" href="#clients" data-s="clients">Clients</a><a class="pill" href="#skills" data-s="skills">Skills</a>
+    <a class="pill" href="#overview" data-s="overview">Overview</a><a class="pill" href="#about" data-s="about">About Me</a><a class="pill" href="#work" data-s="work">Playground</a><a class="pill" href="#experience" data-s="experience">Experience</a><a class="pill" href="#clients" data-s="clients">Clients</a><a class="pill" href="#skills" data-s="skills">Skills</a>
   </nav>
   <div class="tools"><a class="pill lime" href="#contact">Let's talk</a><a class="ic" href="https://www.linkedin.com/in/najmuddin-mustafa-0460ba2ba/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 11v5M8 8v.01M12 16v-5M12 13c0-1.5 1-2 2-2s2 .8 2 2.2V16"/></svg></a><a class="ic" href="mailto:najmuddinmustafa007@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg></a></div>
 </header>
@@ -393,7 +425,7 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 
 <div class="card marq" aria-label="Clients I have worked with">
   <div class="cardhead"><h2>Trusted by banks, government and brands</h2></div>
-  <div class="marq-rows"><div class="mrow"><ul class="track"><li class="tile"><img src="assets/logos/nbk.webp" alt="National Bank of Kuwait" width="320" height="159" decoding="async"></li><li class="tile"><img src="assets/logos/gulf-bank.webp" alt="Gulf Bank" width="320" height="81" decoding="async"></li><li class="tile"><img src="assets/logos/abk.webp" alt="Ahli Bank of Kuwait" width="320" height="166" decoding="async"></li><li class="tile"><img src="assets/logos/ibk.webp" alt="Industrial Bank of Kuwait" width="320" height="444" decoding="async"></li><li class="tile"><img src="assets/logos/gig-kuwait.webp" alt="Gulf Insurance Group Kuwait" width="320" height="229" decoding="async"></li><li class="tile"><img src="assets/logos/amar.webp" alt="Amar Finance &amp; Leasing" width="320" height="191" decoding="async"></li><li class="tile"><img src="assets/logos/union-of-investment-companies.webp" alt="Union of Investment Companies" width="348" height="233" decoding="async"></li><li class="tile"><img src="assets/logos/equate.webp" alt="Equate" width="320" height="270" decoding="async"></li><li class="tile"><img src="assets/logos/kisr.webp" alt="Kuwait Institute for Scientific Research" width="320" height="142" decoding="async"></li><li class="tile"><img src="assets/logos/state-bureau-financial-control.webp" alt="State Bureau for Financial Control" width="320" height="302" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/nbk.webp" alt="" width="320" height="159" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/gulf-bank.webp" alt="" width="320" height="81" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/abk.webp" alt="" width="320" height="166" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/ibk.webp" alt="" width="320" height="444" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/gig-kuwait.webp" alt="" width="320" height="229" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/amar.webp" alt="" width="320" height="191" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/union-of-investment-companies.webp" alt="" width="348" height="233" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/equate.webp" alt="" width="320" height="270" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/kisr.webp" alt="" width="320" height="142" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/state-bureau-financial-control.webp" alt="" width="320" height="302" loading="lazy" decoding="async"></li></ul></div><div class="mrow rev"><ul class="track"><li class="tile"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="Sabah Al Ahmad Center for Giftedness and Creativity" width="320" height="208" decoding="async"></li><li class="tile"><img src="assets/logos/kuwait-reggio-center.webp" alt="Kuwait Reggio Center" width="320" height="384" decoding="async"></li><li class="tile dark msi"><img src="assets/logos/medical-sciences-institute.webp" alt="Medical Sciences Institute" width="480" height="321" decoding="async"></li><li class="tile"><img src="assets/logos/al-hamra-hotel.webp" alt="Al-Hamra Hotel" width="320" height="124" decoding="async"></li><li class="tile"><img src="assets/logos/oxygen.webp" alt="Oxygen, The Muscle Factory" width="320" height="118" decoding="async"></li><li class="tile"><img src="assets/logos/bareedi.webp" alt="Bareedi" width="320" height="131" decoding="async"></li><li class="tile"><img src="assets/logos/dawi.webp" alt="DAWI" width="320" height="126" decoding="async"></li><li class="tile"><img src="assets/logos/qetae.webp" alt="QETAE" width="320" height="87" decoding="async"></li><li class="tile"><img src="assets/logos/nagwa.webp" alt="Nagwa" width="320" height="96" decoding="async"></li><li class="tile dark outing"><img src="assets/logos/outing.webp" alt="Outing" width="480" height="321" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="" width="320" height="208" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/kuwait-reggio-center.webp" alt="" width="320" height="384" loading="lazy" decoding="async"></li><li class="tile dark msi" aria-hidden="true"><img src="assets/logos/medical-sciences-institute.webp" alt="" width="480" height="321" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/al-hamra-hotel.webp" alt="" width="320" height="124" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/oxygen.webp" alt="" width="320" height="118" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/bareedi.webp" alt="" width="320" height="131" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/dawi.webp" alt="" width="320" height="126" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/qetae.webp" alt="" width="320" height="87" loading="lazy" decoding="async"></li><li class="tile" aria-hidden="true"><img src="assets/logos/nagwa.webp" alt="" width="320" height="96" loading="lazy" decoding="async"></li><li class="tile dark outing" aria-hidden="true"><img src="assets/logos/outing.webp" alt="" width="480" height="321" loading="lazy" decoding="async"></li></ul></div></div>
+  <div class="marq-rows lockzone" id="zone-marq"><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="mrow ph"><div class="track"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div></div><div class="lockbox"><a class="btn lime" href="#clients">Client names are private. Request access</a></div></div>
 </div>
 
 <section class="card about" id="about">
@@ -427,38 +459,17 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 </section>
 
 <section class="workwrap" id="work">
-  <div class="workhead"><span class="kick">Developed by me</span><h2>Ideas I turned into <em>live platforms</em></h2><p>From a rough idea, to research, to build, to <span class="rot"><span class="rot-w on">launch</span><span class="rot-w" aria-hidden="true">go-live</span><span class="rot-w" aria-hidden="true">real users</span><span class="rot-w" aria-hidden="true">scale</span></span>. Every platform below is my own work, and every one is live in the real world.</p></div>
-  <div class="cases"><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/alkazemi.webp" srcset="assets/work/alkazemi-640.webp 640w, assets/work/alkazemi.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="615" loading="lazy" decoding="async" alt="Screenshot of the Asset operations platform for a property group project"></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 01</div><h3>Asset operations platform for a property group</h3><div class="tags"><span class="ind">Real estate and property management</span><span>Platform</span><span>Arabic and English</span><span>Role-based access</span></div>
-        <p class="idea">One operations system for a property group's buildings, units, vehicles and stock.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>Operations managers, building supervisors, technicians, procurement and security guards each sign in to their own view of maintenance tickets, approvals, rent collection, vacant-unit inspections, fleet and warehouse.</dd></div><div><dt>Problem</dt><dd>Maintenance requests, approvals and rent follow-ups lived in chats and spreadsheets, so late jobs went unnoticed and nobody had one picture of 41 buildings and 471 units.</dd></div><div><dt>Solution</dt><dd>A live dashboard that shows jobs waiting for approval, late jobs, fixed-on-time rate, occupancy and rent collected. Every request gets a ticket, an owner and a deadline.</dd></div></dl>
-      </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/copx-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Corporate websites as a service project"><span class="sb" aria-hidden="true"></span></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 02</div><h3>Corporate websites as a service</h3><div class="tags"><span class="ind">Banking and listed companies</span><span>SaaS</span><span>Bilingual</span><span>Investor relations</span></div>
-        <p class="idea">A ready-to-launch corporate website for Kuwait's banks and listed companies, hosted and supported as a subscription.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>A listed company picks a template and goes live with investor relations, disclosures, governance pages and an Arabic and English version of every page.</dd></div><div><dt>Problem</dt><dd>Banks and listed companies must publish disclosures and investor content in two languages, and a custom corporate website can take months to design, build and secure.</dd></div><div><dt>Solution</dt><dd>21 ready templates built around the pages investors and regulators look for, with disclosures built in. Hosting, security and support come from KUWAITNET, so a site can go live in a week.</dd></div></dl>
-      </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/sijil.webp" srcset="assets/work/sijil-640.webp 640w, assets/work/sijil.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="573" loading="lazy" decoding="async" alt="Screenshot of the Company intelligence for the Gulf project"></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 03</div><h3>Company intelligence for the Gulf</h3><div class="tags"><span class="ind">Data and information services</span><span>Data product</span><span>Portal, API and bulk data</span><span>AI connector</span></div>
-        <p class="idea">Verified legal-entity data for companies in Kuwait, Saudi Arabia, the UAE, Qatar, Bahrain and Oman, from official sources.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>Banks, insurers, procurement and compliance teams verify a company, screen suppliers, investigate owners and clean CRM records before they sign, onboard or pay.</dd></div><div><dt>Problem</dt><dd>Gulf registries are mostly Arabic-only and slow, each country uses different identifiers, and data resellers rarely say where a field came from or how fresh it is.</dd></div><div><dt>Solution</dt><dd>One search across six registries. Every record names its source and date, is re-checked daily and is marked verified only when two sources agree. Delivered through a portal, a two-way API, bulk files and an AI assistant connector.</dd></div></dl>
-      </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp zoom" data-pan><img class="pan" src="assets/work/zeta.webp" srcset="assets/work/zeta-640.webp 640w, assets/work/zeta.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="608" loading="lazy" decoding="async" alt="Screenshot of the Sales portal for account managers and presales project"></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 04</div><h3>Sales portal for account managers and presales</h3><div class="tags"><span class="ind">IT services and B2B sales</span><span>Internal platform</span><span>Company sign-in</span><span>Live reporting</span></div>
-        <p class="idea">One pipeline for every deal, every department and every presales request.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>Account managers log deals and follow-ups, presales teams receive proposal tickets, and management watches wins on a live office screen.</dd></div><div><dt>Problem</dt><dd>Deals, follow-ups and proposal requests were spread across emails, chats and separate trackers, so ownership was unclear and managers had no shared view of the pipeline.</dd></div><div><dt>Solution</dt><dd>A single portal with company-only sign-in and admin approval for new users. Pipelines, follow-ups and presales tickets sit together, and closed wins appear live on the office screen.</dd></div></dl>
-      </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/italian-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Online flower and gift store for Kuwait project"><span class="sb" aria-hidden="true"></span></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 05</div><h3>Online flower and gift store for Kuwait</h3><div class="tags"><span class="ind">Retail and e-commerce</span><span>Online store</span><span>Arabic and English</span><span>WhatsApp ordering</span></div>
-        <p class="idea">A bilingual online store for bouquets, cakes, balloons and gifts, organised around the way people shop for occasions.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>Customers choose by occasion, such as birthdays, anniversaries, graduation and Eid. They order for themselves or for a company, and can subscribe to regular deliveries.</dd></div><div><dt>Problem</dt><dd>Flower buyers shop in a hurry, on their phones and often in Arabic. A generic store makes them hunt through categories and costs sales at peak dates.</dd></div><div><dt>Solution</dt><dd>Occasion-led navigation, instant search, a first-order offer, corporate and subscription pages and a WhatsApp button on every screen, all in English and Arabic.</dd></div></dl>
-      </div></article><article class="card case">
-      <figure class="shot"><div class="frame"><div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div><div class="vp" data-pan><img class="pan" src="assets/work/arc-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the Motion catalogue for an abaya and handbag brand project"><span class="sb" aria-hidden="true"></span></div></div></figure>
-      <div class="case-body"><div class="case-no">CASE 06</div><h3>Motion catalogue for an abaya and handbag brand</h3><div class="tags"><span class="ind">Fashion and retail</span><span>Catalogue</span><span>Mobile first</span><span>WhatsApp ordering</span></div>
-        <p class="idea">A catalogue where every piece can be turned, explored and ordered in a few taps.</p>
-        <dl class="pcs"><div><dt>Use case</dt><dd>Shoppers browse 195 pieces in 8 collections, spin each design to see how it falls, and message the brand on WhatsApp to order or request a custom border or shade.</dd></div><div><dt>Problem</dt><dd>A flat product grid does not show how an abaya drapes and moves, and most of the brand's sales happen in conversation, not at a checkout.</dd></div><div><dt>Solution</dt><dd>A fast, mobile-first catalogue with drag-to-spin views, collection filters and WhatsApp and Instagram one tap away, so a customer goes from browsing to ordering in one chat.</dd></div></dl>
-      </div></article></div>
+  <div class="workhead"><span class="kick">My dev playground</span><span class="privchip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg> Private, by request</span><h2>Ideas I turned into <em>live platforms</em></h2><p>From a rough idea, to research, to build, to <span class="rot"><span class="rot-w on">launch</span><span class="rot-w" aria-hidden="true">go-live</span><span class="rot-w" aria-hidden="true">real users</span><span class="rot-w" aria-hidden="true">scale</span></span>. Every platform here is my own work, and every one is live in the real world.</p></div>
+  <div class="lockzone" id="zone-work"><div class="lock-preview" aria-hidden="true"><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div><div class="ph-case"><div class="ph-shot"></div><div class="ph-lines"><i style="width:30%"></i><b></b><b style="width:80%"></b><i style="width:55%"></i><b></b><b></b><b style="width:70%"></b></div></div></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Private playground</h3><p>These are my own platforms, so I show them to people I can vouch for. Enter your company email and I will review your request. Once I approve it, you can see everything.</p>
+      <form class="lockform cform" novalidate>
+        <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
+        <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
+        <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="send" type="submit">Request access</button>
+        <button class="lnk" type="button">Already approved? Unlock</button>
+        <div class="msg" role="status" aria-live="polite"></div>
+      </form></div></div></div>
 </section>
 
 <div class="split">
@@ -508,8 +519,17 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
 </div>
 
 <section class="card" id="clients">
-  <div class="cardhead"><h2>Clients I have worked with</h2><span>Banks, insurers, government, schools, hotels and brands</span></div>
-  <ul class="wall"><li class="tile"><img src="assets/logos/nbk.webp" alt="National Bank of Kuwait" width="320" height="159" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/gulf-bank.webp" alt="Gulf Bank" width="320" height="81" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/abk.webp" alt="Ahli Bank of Kuwait" width="320" height="166" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/ibk.webp" alt="Industrial Bank of Kuwait" width="320" height="444" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/gig-kuwait.webp" alt="Gulf Insurance Group Kuwait" width="320" height="229" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/amar.webp" alt="Amar Finance &amp; Leasing" width="320" height="191" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/union-of-investment-companies.webp" alt="Union of Investment Companies" width="348" height="233" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/equate.webp" alt="Equate" width="320" height="270" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/kisr.webp" alt="Kuwait Institute for Scientific Research" width="320" height="142" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/state-bureau-financial-control.webp" alt="State Bureau for Financial Control" width="320" height="302" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/sabah-al-ahmad-center.webp" alt="Sabah Al Ahmad Center for Giftedness and Creativity" width="320" height="208" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/kuwait-reggio-center.webp" alt="Kuwait Reggio Center" width="320" height="384" loading="lazy" decoding="async"></li><li class="tile dark msi"><img src="assets/logos/medical-sciences-institute.webp" alt="Medical Sciences Institute" width="480" height="321" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/al-hamra-hotel.webp" alt="Al-Hamra Hotel" width="320" height="124" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/oxygen.webp" alt="Oxygen, The Muscle Factory" width="320" height="118" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/bareedi.webp" alt="Bareedi" width="320" height="131" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/dawi.webp" alt="DAWI" width="320" height="126" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/qetae.webp" alt="QETAE" width="320" height="87" loading="lazy" decoding="async"></li><li class="tile"><img src="assets/logos/nagwa.webp" alt="Nagwa" width="320" height="96" loading="lazy" decoding="async"></li><li class="tile dark outing"><img src="assets/logos/outing.webp" alt="Outing" width="480" height="321" loading="lazy" decoding="async"></li></ul>
+  <div class="cardhead"><h2>Clients I have worked with</h2><span>Private, by request</span></div>
+  <div class="lockzone wall-lock" id="zone-clients"><div class="lock-preview wallph" aria-hidden="true"><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span><span class="ph-tile"></span></div><div class="lockbox"><div class="lockcard"><div class="lockic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/></svg></div><h3>Client list is private</h3><p>Out of respect for my clients, the names stay hidden. Request access with your company email and I will approve it if it is a fit.</p>
+      <form class="lockform cform" novalidate>
+        <input name="name" placeholder="Your name" autocomplete="name" maxlength="120" aria-label="Your name">
+        <input name="email" type="email" placeholder="Company email" autocomplete="email" maxlength="200" required aria-label="Company email">
+        <input name="company" placeholder="Company" autocomplete="organization" maxlength="160" aria-label="Company">
+        <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="send" type="submit">Request access</button>
+        <button class="lnk" type="button">Already approved? Unlock</button>
+        <div class="msg" role="status" aria-live="polite"></div>
+      </form></div></div></div>
 </section>
 
 <section class="card contact-card" id="contact">
@@ -598,10 +618,10 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
   }
 
   /* number highlights */
-  (function(){
+  function hl(scope){
     var sel='.lede,.about .copy p,.win p,.xin li,.xin .step,.idea,.pcs dd';
     var re=/(\$?\d[\d,]*(?:\.\d+)?[+%]?)/g, marks=[];
-    d.querySelectorAll(sel).forEach(function(rootEl){
+    scope.querySelectorAll(sel).forEach(function(rootEl){
       var walker=d.createTreeWalker(rootEl,NodeFilter.SHOW_TEXT,null), nodes=[], n;
       while((n=walker.nextNode())){ if(n.parentNode.closest('.rot,mark')) continue; nodes.push(n); }
       nodes.forEach(function(t){
@@ -618,7 +638,8 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
     if(reduce||!('IntersectionObserver' in window)){ marks.forEach(function(k){k.classList.add('on');}); return; }
     var mo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); mo.unobserve(e.target);} }); },{threshold:0.9});
     marks.forEach(function(k){ mo.observe(k); });
-  })();
+  }
+  hl(d);
 
   /* hero: every word arrives on cue */
   (function(){
@@ -755,6 +776,80 @@ mark.num.on{background-size:100% 100%;color:var(--lime-ink)}
         });
     });
   }
+
+  /* gated sections: request access, then unlock from Supabase */
+  var RPC='https://bnlzfrrvyocnplexpfqy.supabase.co/rest/v1/rpc/', SBK='sb_publishable_7qdIMV9U1iwltNRvSw5wtQ_G9GZbVat';
+  var FREE=/@(gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|me|aol|proton|protonmail|gmx|mail|yandex|zoho)\.(com|me)$/i;
+  function rpc(fn,body){
+    return fetch(RPC+fn,{method:'POST',headers:{'Content-Type':'application/json','apikey':SBK},body:JSON.stringify(body)})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); });
+  }
+  function esc(x){ return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function tileH(c,hid){
+    return '<li class="tile'+(c.k?' '+c.k:'')+'"'+(hid?' aria-hidden="true"':'')+'><img src="assets/logos/'+c.f+'.webp" alt="'+(hid?'':esc(c.n))+'" width="'+c.w+'" height="'+c.h+'"'+(hid?' loading="lazy"':'')+' decoding="async"></li>';
+  }
+  function rowH(items,rev){
+    var a=items.map(function(c){return tileH(c,false);}).join(''), b=items.map(function(c){return tileH(c,true);}).join('');
+    return '<div class="mrow'+(rev?' rev':'')+'"><ul class="track">'+a+b+'</ul></div>';
+  }
+  function caseH(c,i){
+    var bar='<div class="fbar" aria-hidden="true"><i></i><i></i><i></i></div>', shot;
+    if(c.tall) shot='<div class="frame">'+bar+'<div class="vp" data-pan><img class="pan" src="assets/work/'+c.k+'-tall.webp" width="1000" height="2265" loading="lazy" decoding="async" alt="Screenshot of the '+esc(c.n)+' project"><span class="sb" aria-hidden="true"></span></div></div>';
+    else shot='<div class="frame">'+bar+'<div class="vp zoom" data-pan><img class="pan" src="assets/work/'+c.k+'.webp" srcset="assets/work/'+c.k+'-640.webp 640w, assets/work/'+c.k+'.webp 1200w" sizes="(max-width:860px) 92vw, 560px" width="1200" height="'+c.h+'" loading="lazy" decoding="async" alt="Screenshot of the '+esc(c.n)+' project"></div></div>';
+    var tags='<span class="ind">'+esc(c.i)+'</span>'+c.t.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');
+    return '<article class="card case"><figure class="shot">'+shot+'</figure><div class="case-body"><div class="case-no">CASE '+('0'+(i+1)).slice(-2)+'</div><h3>'+esc(c.n)+'</h3><div class="tags">'+tags+'</div><p class="idea">'+esc(c.d)+'</p><dl class="pcs"><div><dt>Use case</dt><dd>'+esc(c.u)+'</dd></div><div><dt>Problem</dt><dd>'+esc(c.p)+'</dd></div><div><dt>Solution</dt><dd>'+esc(c.s)+'</dd></div></dl></div></article>';
+  }
+  var unlocked=false;
+  function unlock(data){
+    if(unlocked||!data) return; unlocked=true;
+    var zw=d.getElementById('zone-work'), zm=d.getElementById('zone-marq'), zc=d.getElementById('zone-clients');
+    if(zw){ zw.className='cases unl'; zw.removeAttribute('id'); zw.innerHTML=data.cases.map(caseH).join(''); }
+    var half=Math.floor(data.clients.length/2);
+    if(zm){ zm.className='marq-rows unl'; zm.innerHTML=rowH(data.clients.slice(0,half),false)+rowH(data.clients.slice(half),true); }
+    if(zc){ zc.className='wall unl'; zc.innerHTML=data.clients.map(function(c){return tileH(c,false);}).join(''); var w=d.createElement('ul'); w.className='wall unl'; w.innerHTML=zc.innerHTML; zc.parentNode.replaceChild(w,zc); }
+    d.querySelectorAll('.cardhead span').forEach(function(sp){ if(sp.textContent==='Private, by request') sp.textContent='Banks, insurers, government, schools, hotels and brands'; });
+    var pc=d.querySelector('.privchip'); if(pc) pc.remove();
+    hl(zw||d);
+    pans=d.querySelectorAll('[data-pan]'); onScroll();
+    var ps=zw?zw.querySelectorAll('.pcs'):[];
+    if(reduce||!('IntersectionObserver' in window)){ Array.prototype.forEach.call(ps,function(p){p.classList.add('draw');}); }
+    else { var po2=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('draw'); po2.unobserve(e.target);} }); },{threshold:0.45}); Array.prototype.forEach.call(ps,function(p){ po2.observe(p); }); }
+  }
+  function tryUnlock(email,msg){
+    return rpc('get_locked',{p_email:email}).then(function(data){
+      if(data){ try{localStorage.setItem('njw_access',email);}catch(e){} unlock(data); return true; }
+      if(msg) msg.textContent='That email is not approved yet. Send a request below and I will review it.';
+      return false;
+    });
+  }
+  d.querySelectorAll('.lockform').forEach(function(form){
+    var msg=form.querySelector('.msg'), btn=form.querySelector('.send'), lnk=form.querySelector('.lnk');
+    function mail(){ return (form.elements.email.value||'').trim().toLowerCase(); }
+    form.addEventListener('submit',function(e){
+      e.preventDefault(); if(form.elements.website.value) return;
+      var email=mail(), name=(form.elements.name.value||'').trim(), company=(form.elements.company.value||'').trim();
+      if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent='Please enter your company email.'; return; }
+      if(FREE.test(email)){ msg.textContent='Please use your company email, not a personal one.'; return; }
+      if(!name){ msg.textContent='Please add your name.'; return; }
+      btn.disabled=true; msg.textContent='Sending your request...';
+      rpc('request_access',{p_email:email,p_name:name,p_company:company}).then(function(st){
+        if(st==='approved'){ msg.textContent='You are approved. Unlocking...'; return tryUnlock(email,msg); }
+        if(st==='free_email'){ msg.textContent='Please use your company email, not a personal one.'; return; }
+        if(st==='invalid'){ msg.textContent='That email does not look right.'; return; }
+        if(st==='denied'){ msg.textContent='Sorry, this request was not approved.'; return; }
+        var t='Hello Najmuddin, I just requested access to your portfolio with '+email+(company?' ('+company+')':'')+'. Name: '+name+'.';
+        msg.innerHTML='Request sent. I will review it and approve it, then come back here and press <b>Already approved? Unlock</b> with the same email. <a href="https://wa.me/96566906494?text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">Nudge me on WhatsApp</a> to speed it up.';
+      }).catch(function(){ msg.textContent='Something went wrong. Please try again in a moment.'; })
+        .then(function(){ btn.disabled=false; });
+    });
+    lnk.addEventListener('click',function(){
+      var email=mail();
+      if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent='Enter the email I approved, then press unlock.'; return; }
+      msg.textContent='Checking...';
+      tryUnlock(email,msg).catch(function(){ msg.textContent='Could not check right now. Please try again.'; });
+    });
+  });
+  try{ var saved=localStorage.getItem('njw_access'); if(saved) tryUnlock(saved).catch(function(){}); }catch(e){}
 })();
 </script>
 </body></html>
