@@ -1,0 +1,22 @@
+# Najmuddin Mustafa | KUWAITNET Project Development (njw3.com)
+
+> Portfolio and services site of Najmuddin Mustafa, Sr. Account Manager at KUWAITNET (Kuwait's first local IT innovation partner, operating since 1997). The site explains what the KUWAITNET Project Development Division builds and how projects are delivered.
+
+## What is offered
+- Informative website development, catalog web apps, e-commerce apps, iOS and Android apps
+- Complex API integrations and workflow automation with agentic AI
+- Python and Django development (adopted by KUWAITNET in 2007), Wagtail, custom software and SaaS
+- Cloud solutions (AWS, Azure, Google Cloud), enterprise solutions (Red Hat, Redis)
+- Cyber security (penetration testing, WAF and DDoS, 24/7 SOC), domains, hosting, SSL, Google Workspace, backup
+
+## How projects are delivered
+Requirement gathering, scope, scope confirmation, pricing, then seven phases: workshop, wireframes and designs, SRS (system requirement specifications), development, testing and QA, training and UAT, go live. Support packages: ODP (ongoing development hours), yearly maintenance, change requests (CR).
+
+## Pages
+- [Our expertise (home)](https://njw3.com/): services, process, phases, technology, FAQ
+- [Playground](https://njw3.com/projects/): platforms built, shown with gated access
+- [About](https://njw3.com/about/): Najmuddin Mustafa, experience, tools and contact details
+
+## Company
+- KUWAITNET: https://kuwaitnet.com
+- Clients: https://kuwaitnet.com/en/clients/
