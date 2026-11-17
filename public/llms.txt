@@ -14,6 +14,7 @@ Requirement gathering, scope, scope confirmation, pricing, then seven phases: wo
 
 ## Pages
 - [Our expertise (home)](https://njw3.com/): services, process, phases, technology, FAQ
+- [Milestones](https://njw3.com/milestone/): KUWAITNET year by year since 1997
 - [About](https://njw3.com/about/): Najmuddin Mustafa, experience, tools and contact details
 
 ## Company
