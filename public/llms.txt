@@ -14,7 +14,6 @@ Requirement gathering, scope, scope confirmation, pricing, then seven phases: wo
 
 ## Pages
 - [Our expertise (home)](https://njw3.com/): services, process, phases, technology, FAQ
-- [Playground](https://njw3.com/projects/): platforms built, shown with gated access
 - [About](https://njw3.com/about/): Najmuddin Mustafa, experience, tools and contact details
 
 ## Company
